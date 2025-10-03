@@ -1,4 +1,4 @@
-# Modinfinite
+# Moodinfinite
 Basic webapp for creating moodboards or basic storyboards.
 
 
