@@ -6,34 +6,55 @@ _**Vibecode** with Gemini 2.5, is just for my basic needs to create quick moodbo
 _
 
 
+/**/
+
+
 **Updated to Version 0.3**
 **New tools and behaviors**:
 
-  OK - Files restrictions to import
-  	- (make clear what formats can we import).
-  OK - Saving a current moodboard as project, not just PNG.
-  	- Add ctrl+s, to save.
-  	- Add ctrl+o, to load.
-  OK - Drag and drop project file to load.
-  OK - History behavior.
-  	- ctrl+z (undo)
-  	- ctrl+shift+z (redo)
-  OK - Layer order for objects.
-  OK - Collapsable and more aware footer helper.
-  	- Added H Hotkey to show or hide.
-  OK	- Auto align on grid with padding, (for multiple selected images).
-  OK - Opacity slider of selected image.
-  		- This should be a slider popup on the under menu after a button click.
+  Files restrictions to import
+  	_- (make clear what formats can we import)._
+	
+  Saving a current moodboard as project, not just PNG.
+  	_- Add ctrl+s, to save.
+  	- Add ctrl+o, to load._
+	
+  Drag and drop project file to load.
+  
+  History behavior.
+  	_- ctrl+z (undo)
+  	- ctrl+shift+z (redo)_
+	
+  Layer order for objects.
+  
+  Collapsable and more aware footer helper.
+  	_- Added H Hotkey to show or hide._
+	
+  Auto align on grid with padding, (for multiple selected images).
+  
+  Opacity slider of selected image.
+  		_- This should be a slider popup on the under menu after a button click._
+
+
+/**/
+
 
 **Bugfix**:
 
-OK - Text is not centered by default on text boxes, ver+hor.
-OK - Position of elements resets after movement and reselect.
-OK - Lock on elements after edits.
-OK - Right click menu being under other elements.
+Text is not centered by default on text boxes, ver+hor.
+
+Position of elements resets after movement and reselect.
+
+Lock on elements after edits.
+
+Right click menu being under other elements.
+
+
+/**/
+
 
 **Next**:
-	- Cloud integration.
+	_- Cloud integration.
 	- Snap of a object to another object corners.
-	- Draw pen tool.
+	- Draw pen tool._
 
