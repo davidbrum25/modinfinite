@@ -1,5 +1,8 @@
 # Moodinfinite
 Basic webapp for creating moodboards or basic storyboards.
 
-_**Vibecode** with Gemini 2.5, is just for my basic needs to create quick moodboards and story boards / sketches, to start visual projects.
-_
+**Vibecode** with Gemini 2.5.
+
+
+Made for my ussage, as all apps always require to much of a hassle to use, i just wanit something to start a project and move one.
+_Is now ready to create quick moodboards and story boards / sketches, to start visual projects._
