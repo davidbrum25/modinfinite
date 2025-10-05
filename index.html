@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" style="--bg-page: #0d0d0d; --bg-ui: rgba(214, 229, 245, 0.5); --bg-ui-hover: rgba(173, 203, 235, 0.65); --text-color: #0f172a; --text-color-light: #334155; --text-color-strong: #0f172a; --border-color: #99bee5; --switch-bg-checked: #429eff;">
+<html lang="en" style="--bg-page: #0d0d0d; --bg-ui: rgba(35, 38, 51, 0.4); --bg-ui-hover: rgba(55, 58, 71, 0.5); --text-color: #e2e8f0; --text-color-light: #94a3b8; --text-color-strong: #ffffff; --border-color: rgba(255, 255, 255, 0.1); --switch-bg-checked: #429eff;">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moodinfinite v0.3</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Moodinfinite v0.4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         /* CSS variables will be set dynamically by JavaScript */
         body {
@@ -21,18 +21,21 @@
         canvas.grabbing {
             cursor: grabbing;
         }
+        canvas.eyedropper-active {
+            cursor: crosshair;
+        }
         #context-menu {
             position: absolute;
             z-index: 2100;
-            background-color: var(--bg-ui);
+            background: var(--bg-ui);
             border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             padding: 0.75rem;
             display: none;
             width: 240px;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
         .menu-item {
             display: flex;
@@ -97,11 +100,10 @@
         .tool-button {
             background-color: var(--bg-ui);
             border: 1px solid var(--border-color);
-            border-radius: 0.375rem;
+            border-radius: 0.5rem;
             padding: 0.5rem;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             color: var(--text-color);
         }
         .tool-button:hover {
@@ -117,22 +119,42 @@
             border-color: var(--switch-bg-checked);
             color: var(--switch-bg-checked);
         }
+        #top-bar {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 50;
+            display: flex;
+            gap: 0.5rem;
+            background: var(--bg-ui);
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
         #left-bar {
             position: absolute;
             top: 50%;
             left: 1rem;
             transform: translateY(-50%);
             z-index: 50;
-            background-color: var(--bg-ui);
+            background: var(--bg-ui);
             padding: 0.5rem;
             border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .separator {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 0.25rem 0.25rem;
         }
         .slider-input {
             -webkit-appearance: none;
@@ -183,74 +205,20 @@
             border-radius: 0.375rem;
             border: 1px solid var(--border-color);
         }
-        
-        #instructions-footer {
-            position: absolute;
-            bottom: 1rem;
-            left: 1rem;
-            z-index: 50;
-            display: flex;
-            align-items: center;
-            color: var(--text-color-light);
-            background-color: var(--bg-ui);
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease-in-out;
-            pointer-events: auto;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 0;
-            overflow: hidden;
-        }
-        #instructions-footer:hover {
-            background-color: var(--bg-ui-hover);
-        }
-        #toggle-help-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            color: var(--text-color-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s;
-        }
-        #toggle-help-btn .chevron {
-            transition: transform 0.4s ease-out;
-        }
-        #help-text {
-            padding: 0.5rem 0.75rem 0.5rem 0;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            overflow: hidden;
-            transition: max-width 0.4s ease-out, padding 0.4s ease-out, opacity 0.4s 0.1s ease-out;
-            max-width: 800px;
-        }
-        #instructions-footer.closed #help-text {
-            max-width: 0;
-            padding: 0;
-            opacity: 0;
-            transition: max-width 0.4s ease-out, padding 0.4s ease-out, opacity 0.2s ease-out;
-        }
-        #instructions-footer.closed #toggle-help-btn .chevron {
-            transform: rotate(180deg);
-        }
-
 
         #selection-toolbar {
             position: absolute;
             z-index: 1001;
-            background-color: var(--bg-ui);
+            background: var(--bg-ui);
             padding: 0.35rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             display: none;
             gap: 0.35rem;
             border: 1px solid var(--border-color);
             transform: translate(-50%, 10px); /* Position adjustment */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
         .selection-tool-btn {
             background-color: transparent;
@@ -277,13 +245,36 @@
         .selection-tool-btn .text-red-500 {
              color: #ef4444;
         }
-        #save-container {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            z-index: 50;
-            display: flex;
-            gap: 0.5rem;
+        .selection-tool-select {
+            background-color: transparent;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.4rem;
+            cursor: pointer;
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .selection-tool-select:hover {
+            background-color: var(--bg-ui-hover);
+        }
+        .selection-tool-select option {
+            background-color: var(--bg-ui);
+            color: var(--text-color);
+            font-weight: normal;
+            font-style: normal;
+        }
+        #text-tools-container {
+            display: none; 
+            align-items: center; 
+            gap: 0.35rem; 
+            border-right: 1px solid var(--border-color); 
+            padding-right: 0.35rem; 
+            margin-right: 0.35rem;
         }
         #text-editor {
             position: absolute;
@@ -293,12 +284,10 @@
             padding: 10px;
             margin: 0;
             font-family: 'Inter', sans-serif;
-            font-weight: bold;
             resize: none;
             overflow: hidden;
             box-sizing: border-box;
             line-height: 1.4;
-            text-align: center;
         }
         #box-color-picker-container {
             position: absolute;
@@ -336,17 +325,20 @@
             -webkit-backdrop-filter: blur(4px);
         }
         #confirmation-modal {
-            background-color: var(--bg-ui);
+            background: var(--bg-ui);
             color: var(--text-color);
             padding: 1.5rem 2rem;
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             text-align: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
         #confirmation-modal h2 {
             margin: 0 0 0.5rem 0;
             font-size: 1.125rem;
+            color: var(--text-color-strong);
         }
         #confirmation-modal p {
             margin: 0 0 1.5rem 0;
@@ -371,7 +363,7 @@
         .modal-button.confirm {
             background-color: #ef4444; /* Red */
             color: white;
-            border-color: #dc2626;
+            border-color: transparent;
         }
         .modal-button.confirm:hover {
             background-color: #dc2626;
@@ -384,9 +376,170 @@
         .modal-button.cancel:hover {
             opacity: 0.8;
         }
+
+        /* Palette Panel Styles */
+        #palette-panel {
+            position: absolute;
+            z-index: 51;
+            background: var(--bg-ui);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            pointer-events: none;
+        }
+        #palette-panel.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .palette-option {
+            cursor: pointer;
+            border-radius: 0.5rem;
+            padding: 4px;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+            display: flex;
+            gap: 4px;
+        }
+        .palette-option:hover {
+            border-color: var(--switch-bg-checked);
+        }
+        .palette-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 0.375rem;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        #toolbar-color-picker-container {
+            padding: 0.25rem 0;
+            display: flex;
+            justify-content: center;
+        }
+        #toolbar-accent-color-picker {
+             width: 28px;
+             height: 28px;
+             border-radius: 50%;
+        }
+
+        /* Help Modal Styles */
+        #help-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 3000;
+            display: none; /* Initially hidden */
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        #help-modal {
+            background: var(--bg-ui);
+            color: var(--text-color);
+            padding: 2rem 3rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        #close-help-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-color-light);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        #help-modal h2 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            color: var(--text-color-strong);
+            text-align: center;
+        }
+        .help-content {
+            overflow-y: auto;
+            padding-right: 1rem; /* for scrollbar */
+        }
+        .help-content h3 {
+            color: var(--text-color-strong);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.25rem;
+        }
+        .help-content p, .help-content li {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .help-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .help-content li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        .help-content li::before {
+            content: '•';
+            color: var(--switch-bg-checked);
+            position: absolute;
+            left: 0;
+        }
+        .help-content strong {
+            color: var(--text-color-strong);
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
+    <div id="top-bar">
+        <button id="new-file-btn" title="New Board (Shift+N)" class="tool-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+        </button>
+        <button id="load-project-btn" title="Open Project (Ctrl+O)" class="tool-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+        <button id="save-project-btn" title="Save Project (Ctrl+S)" class="tool-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+        </button>
+        <button id="save-png-btn" title="Export as PNG (Shift+S)" class="tool-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        </button>
+        <button id="palette-btn" title="Color Palettes" class="tool-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-palette2" viewBox="0 0 16 16">
+			  <path d="M0 .5A.5.5 0 0 1 .5 0h5a.5.5 0 0 1 .5.5v5.277l4.147-4.131a.5.5 0 0 1 .707 0l3.535 3.536a.5.5 0 0 1 0 .708L10.261 10H15.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H3a3 3 0 0 1-2.121-.879A3 3 0 0 1 0 13.044m6-.21 7.328-7.3-2.829-2.828L6 7.188zM4.5 13a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M15 15v-4H9.258l-4.015 4zM0 .5v12.495zm0 12.495V13z"/>
+			</svg>
+        </button>
+        <button id="open-help-btn" title="Help (H)" class="tool-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </button>
+    </div>
 
     <canvas id="moodboard-canvas"></canvas>
     
@@ -398,14 +551,28 @@
 
     <!-- Left Toolbar for adding elements -->
     <div id="left-bar">
-        <button id="new-file-btn" title="New Board (Shift+N)" class="tool-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+        <div id="toolbar-color-picker-container">
+            <input type="color" id="toolbar-accent-color-picker" class="color-picker-input" title="Accent Color">
+        </div>
+        <button id="eyedropper-btn" title="Eyedropper (E)" class="tool-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyedropper" viewBox="0 0 16 16">
+  <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.853a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708zM2 12.707l7-7L10.293 7l-7 7H2z"></path>
+</svg>
         </button>
-         <button id="add-image-btn" title="Add Image (I)" class="tool-button">
+        <button id="add-image-btn" title="Add Image (I)" class="tool-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 15 9 5 19"></polyline></svg>
+        </button>
+        
+        <div class="separator"></div>
+
+        <button id="select-tool-btn" title="Select (V)" class="tool-button active">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path><path d="M13 13l6 6"></path></svg>
         </button>
         <button id="add-text-btn" title="Add Text (T)" class="tool-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+        </button>
+        <button id="draw-btn" title="Draw (D)" class="tool-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path></svg>
         </button>
         <button id="add-arrow-btn" title="Add Arrow (A)" class="tool-button">
            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -413,7 +580,10 @@
         <button id="add-box-btn" title="Add Box (B)" class="tool-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
         </button>
-        <button id="align-btn" title="Auto Align Selection" class="tool-button" disabled>
+
+        <div class="separator"></div>
+        
+        <button id="align-btn" title="Auto Align Selection (Shift+A)" class="tool-button" disabled>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
         </button>
     </div>
@@ -478,43 +648,51 @@
              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
          </div>
     </div>
-
-    <!-- Footer instructions -->
-    <div id="instructions-footer">
-        <button id="toggle-help-btn" title="Toggle Help Bar (H)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <span id="help-text">
-            Shift+N: New | Ctrl+S: Save | Ctrl+O: Open | Ctrl+Z: Undo | Ctrl+Shift+Z: Redo
-        </span>
-    </div>
-
-    <!-- Bottom right save buttons -->
-    <div id="save-container">
-        <button id="load-project-btn" title="Open Project (Ctrl+O)" class="tool-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-        </button>
-        <button id="save-project-btn" title="Save Project (Ctrl+S)" class="tool-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-        </button>
-        <button id="save-png-btn" title="Export as PNG (Shift+S)" class="tool-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        </button>
-    </div>
     
+    <div id="palette-panel"></div>
+
     <div id="box-color-picker-container">
         <input type="color" id="box-color-picker" class="color-picker-input">
     </div>
 
     <!-- Floating toolbar for selected items -->
     <div id="selection-toolbar">
+        <div id="text-tools-container">
+            <select id="font-family-select" class="selection-tool-select" title="Font Family">
+                <option value="Inter">Inter</option>
+                <option value="Roboto">Roboto</option>
+                <option value="Playfair Display">Playfair</option>
+                <option value="Source Code Pro">Code</option>
+            </select>
+            <button id="text-align-left-btn" class="selection-tool-btn" title="Align Left">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="17" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+            </button>
+            <button id="text-align-center-btn" class="selection-tool-btn" title="Align Center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="10" x2="6" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="18" y1="14" x2="6" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+            </button>
+            <button id="text-align-right-btn" class="selection-tool-btn" title="Align Right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="7" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+            </button>
+            <button id="text-style-bold-btn" class="selection-tool-btn" title="Bold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path></svg>
+            </button>
+            <button id="text-style-italic-btn" class="selection-tool-btn" title="Italic">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="4" x2="10" y2="4"></line><line x1="14" y1="20" x2="5" y2="20"></line><line x1="15" y1="4" x2="9" y2="20"></line></svg>
+            </button>
+        </div>
          <button id="toggle-box-style-btn" class="selection-tool-btn" title="Toggle Box Style">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
         </button>
-        <button id="bring-front-btn" class="selection-tool-btn" title="Bring to Front (Page Up)">
+        <button id="group-btn" class="selection-tool-btn" title="Group (Ctrl+G)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+        </button>
+        <button id="ungroup-btn" class="selection-tool-btn" title="Ungroup (Ctrl+Shift+G)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2" ry="2" stroke-dasharray="2 2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v2"></path></svg>
+        </button>
+        <button id="bring-front-btn" class="selection-tool-btn" title="Bring to Front (Page Up / Home)">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M21 21V8a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v13"/></svg>
         </button>
-        <button id="send-back-btn" class="selection-tool-btn" title="Send to Back (Page Down)">
+        <button id="send-back-btn" class="selection-tool-btn" title="Send to Back (Page Down / End)">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1"/><path d="M8 22v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"/></svg>
         </button>
         <button id="scale-btn" class="selection-tool-btn" title="Scale (S)">
@@ -542,6 +720,66 @@
             </div>
         </div>
     </div>
+    
+    <!-- Help Modal -->
+    <div id="help-modal-overlay">
+        <div id="help-modal">
+            <button id="close-help-btn">&times;</button>
+            <h2>Moodinfinite Help</h2>
+            <div class="help-content">
+                <h3>Welcome!</h3>
+                <p>Moodinfinite is a digital canvas for your ideas. Add images, text, arrows, and more to create moodboards, brainstorm, or organize your thoughts.</p>
+                
+                <h3>Core Concepts</h3>
+                <ul>
+                    <li><strong>Panning:</strong> Middle-click and drag, or hold Space and left-click and drag to move around the canvas.</li>
+                    <li><strong>Zooming:</strong> Use the mouse wheel to zoom in and out.</li>
+                    <li><strong>Selecting:</strong> Click on an item to select it. Hold Shift and click to select multiple items. Click and drag on an empty area to create a selection box.</li>
+                    <li><strong>Moving:</strong> Click and drag a selected item to move it.</li>
+                </ul>
+
+                <h3>Tools (Left Toolbar & Hotkeys)</h3>
+                <ul>
+                    <li><strong>New Board (Shift+N):</strong> Clears the canvas.</li>
+                    <li><strong>Add Image (I):</strong> Opens a file dialog to add images. You can also paste images or drag-and-drop them onto the canvas.</li>
+                    <li><strong>Add Text (T):</strong> Click and drag to create a text box. Double-click to edit.</li>
+                    <li><strong>Add Arrow (A):</strong> Click and drag to draw an arrow.</li>
+                    <li><strong>Add Box (B):</strong> Click and drag to create a colored rectangle.</li>
+                    <li><strong>Draw (D):</strong> Freehand drawing tool.</li>
+                    <li><strong>Eyedropper (E):</strong> Pick a color from the canvas to set as your accent color.</li>
+                    <li><strong>Auto Align (Shift+A):</strong> Neatly arranges two or more selected items into a grid.</li>
+                </ul>
+
+                <h3>Selection Toolbar</h3>
+                <p>When you select an item, a floating toolbar appears with context-specific actions.</p>
+                <ul>
+                    <li><strong>Text Controls:</strong> Change font, alignment, and style (bold/italic) for selected text items.</li>
+                    <li><strong>Grouping (Ctrl+G):</strong> Combine multiple selected items into a single group.</li>
+                    <li><strong>Ungrouping (Ctrl+Shift+G):</strong> Break a group back into its individual items.</li>
+                    <li><strong>Layering (Page Up/Down):</strong> Bring items to the front or send them to the back.</li>
+                    <li><strong>Scale (S):</strong> Activate the scale handle on the bottom-right of an item. Hold Shift to maintain aspect ratio while scaling.</li>
+                    <li><strong>Rotate (R):</strong> Activate the rotate handle on the top-right of an item. Hold Shift to snap to 15-degree increments.</li>
+                    <li><strong>Pin (P):</strong> Lock an item in place to prevent accidental movement or editing.</li>
+                    <li><strong>Delete (Del):</strong> Remove the selected item(s).</li>
+                </ul>
+
+                <h3>Other Hotkeys</h3>
+                <ul>
+                    <li><strong>Copy:</strong> Ctrl+C</li>
+                    <li><strong>Cut:</strong> Ctrl+X</li>
+                    <li><strong>Paste:</strong> Ctrl+V</li>
+                    <li><strong>Duplicate:</strong> Ctrl+D</li>
+                    <li><strong>Undo:</strong> Ctrl+Z</li>
+                    <li><strong>Redo:</strong> Ctrl+Shift+Z</li>
+                    <li><strong>Select All:</strong> Ctrl+A</li>
+                    <li><strong>Toggle Grid:</strong> G</li>
+                    <li><strong>Open Project:</strong> Ctrl+O</li>
+                    <li><strong>Save Project:</strong> Ctrl+S</li>
+                    <li><strong>Export as PNG:</strong> Shift+S</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
     <script>
@@ -555,6 +793,7 @@
         const addTextBtn = document.getElementById('add-text-btn');
         const addArrowBtn = document.getElementById('add-arrow-btn');
         const addBoxBtn = document.getElementById('add-box-btn');
+        const drawBtn = document.getElementById('draw-btn');
         const alignBtn = document.getElementById('align-btn');
         const contextMenu = document.getElementById('context-menu');
         const showGridToggle = document.getElementById('show-grid-toggle');
@@ -571,6 +810,7 @@
         const bgColorPicker = document.getElementById('bg-color-picker');
         const accentColorPicker = document.getElementById('accent-color-picker');
         const gridColorPicker = document.getElementById('grid-color-picker');
+        const toolbarAccentColorPicker = document.getElementById('toolbar-accent-color-picker');
         const textEditor = document.getElementById('text-editor');
         const boxColorPickerContainer = document.getElementById('box-color-picker-container');
         const boxColorPicker = document.getElementById('box-color-picker');
@@ -585,20 +825,35 @@
         const confirmationModalOverlay = document.getElementById('confirmation-modal-overlay');
         const confirmNewBtn = document.getElementById('confirm-new-btn');
         const cancelNewBtn = document.getElementById('cancel-new-btn');
-        const instructionsFooter = document.getElementById('instructions-footer');
-        const toggleHelpBtn = document.getElementById('toggle-help-btn');
         const opacitySliderContainer = document.getElementById('opacity-slider-container');
         const opacitySeparator = document.getElementById('opacity-separator');
         const itemOpacitySlider = document.getElementById('item-opacity-slider');
         const itemOpacityValue = document.getElementById('item-opacity-value');
+        const paletteBtn = document.getElementById('palette-btn');
+        const palettePanel = document.getElementById('palette-panel');
+        const eyedropperBtn = document.getElementById('eyedropper-btn');
+        const groupBtn = document.getElementById('group-btn');
+        const ungroupBtn = document.getElementById('ungroup-btn');
+        const textToolsContainer = document.getElementById('text-tools-container');
+        const fontFamilySelect = document.getElementById('font-family-select');
+        const textAlignLeftBtn = document.getElementById('text-align-left-btn');
+        const textAlignCenterBtn = document.getElementById('text-align-center-btn');
+        const textAlignRightBtn = document.getElementById('text-align-right-btn');
+        const textStyleBoldBtn = document.getElementById('text-style-bold-btn');
+        const textStyleItalicBtn = document.getElementById('text-style-italic-btn');
+        const openHelpBtn = document.getElementById('open-help-btn');
+        const helpModalOverlay = document.getElementById('help-modal-overlay');
+        const closeHelpBtn = document.getElementById('close-help-btn');
+        const selectToolBtn = document.getElementById('select-tool-btn');
+
 
         // State Variables
-        let isHelpOpen = true;
         let cameraOffset = { x: 0, y: 0 };
         let cameraZoom = 1;
         const MAX_ZOOM = 5, MIN_ZOOM = 0.1, SCROLL_SENSITIVITY = 0.0005;
         let isDragging = false, dragStart = { x: 0, y: 0 };
         let items = [], selectedItems = []; 
+        let clipboard = [];
         let isMovingItems = false, moveStart = {x: 0, y: 0};
         let currentTool = null, isDrawing = false;
         let canvasBackgroundColor = '#0d0d0d', accentColor = '#429eff', gridColor = '#f9f8f6';
@@ -616,6 +871,12 @@
         let historyIndex = -1;
         const HISTORY_LIMIT = 50;
 
+        const colorPalettes = [
+            { bg: '#0d0d0d', accent: '#429eff', grid: '#ffffff' },
+            { bg: '#173640', accent: '#429eff', grid: '#ffffff' },
+            { bg: '#bfbfbf', accent: '#fe345c', grid: '#000000' }
+        ];
+
         // --- CORE FUNCTIONS ---
 
         function setupEventListeners() {
@@ -627,7 +888,12 @@
             window.addEventListener('resize', resizeCanvas);
             window.addEventListener('keydown', handleKeyDown);
             canvas.addEventListener('contextmenu', onContextMenu);
-            document.addEventListener('click', (e) => { if (!contextMenu.contains(e.target)) contextMenu.style.display = 'none'; });
+            document.addEventListener('click', (e) => { 
+                if (!contextMenu.contains(e.target)) contextMenu.style.display = 'none';
+                if (palettePanel.classList.contains('open') && !palettePanel.contains(e.target) && e.target !== paletteBtn && !paletteBtn.contains(e.target)) {
+                    palettePanel.classList.remove('open');
+                }
+            });
             
             // Drag and drop listeners for images and projects
             window.addEventListener('paste', handlePaste);
@@ -636,18 +902,37 @@
             canvas.addEventListener('drop', handleDrop);
 
             // Button listeners
-            toggleHelpBtn.addEventListener('click', toggleHelpFooter);
+            openHelpBtn.addEventListener('click', () => helpModalOverlay.style.display = 'flex');
+            closeHelpBtn.addEventListener('click', () => helpModalOverlay.style.display = 'none');
+            helpModalOverlay.addEventListener('click', (e) => {
+                if (e.target === helpModalOverlay) {
+                    helpModalOverlay.style.display = 'none';
+                }
+            });
             newFileBtn.addEventListener('click', confirmNewBoard);
             savePngBtn.addEventListener('click', saveAsPng);
             saveProjectBtn.addEventListener('click', saveProject);
             loadProjectBtn.addEventListener('click', () => projectInput.click());
+            paletteBtn.addEventListener('click', () => {
+                if (palettePanel.classList.contains('open')) {
+                    palettePanel.classList.remove('open');
+                } else {
+                    const btnRect = paletteBtn.getBoundingClientRect();
+                    palettePanel.style.left = `${btnRect.left}px`;
+                    palettePanel.style.top = `${btnRect.bottom + 8}px`; // 8px margin
+                    palettePanel.classList.add('open');
+                }
+            });
             addImageBtn.addEventListener('click', () => imageInput.click());
             imageInput.addEventListener('change', handleImageUpload);
             projectInput.addEventListener('change', handleProjectUpload);
             addArrowBtn.addEventListener('click', () => setCurrentTool('arrow'));
             addTextBtn.addEventListener('click', () => setCurrentTool('text'));
             addBoxBtn.addEventListener('click', () => setCurrentTool('box'));
+            drawBtn.addEventListener('click', () => setCurrentTool('draw'));
+            eyedropperBtn.addEventListener('click', () => setCurrentTool('eyedropper'));
             alignBtn.addEventListener('click', autoAlignSelection);
+            selectToolBtn.addEventListener('click', () => setCurrentTool(null));
             
             // Context Menu listeners
             showGridToggle.addEventListener('change', (e) => showGrid = e.target.checked);
@@ -656,8 +941,15 @@
             gridSizeSlider.addEventListener('input', (e) => { gridSize = parseInt(e.target.value); gridSizeValue.textContent = `${gridSize}px`; });
             gridOpacitySlider.addEventListener('input', (e) => { gridOpacity = parseFloat(e.target.value); gridOpacityValue.textContent = `${Math.round(gridOpacity * 100)}%`; });
             deleteItemBtn.addEventListener('click', deleteSelectedItems);
-            bgColorPicker.addEventListener('input', e => { canvasBackgroundColor = e.target.value; canvas.style.backgroundColor = canvasBackgroundColor; updateUIColors(); });
-            accentColorPicker.addEventListener('input', e => { accentColor = e.target.value; updateUIColors(); });
+            bgColorPicker.addEventListener('input', e => { canvasBackgroundColor = e.target.value; updateUIColors(); });
+            accentColorPicker.addEventListener('input', e => { 
+                accentColor = e.target.value; 
+                updateUIColors(); 
+            });
+             toolbarAccentColorPicker.addEventListener('input', e => { 
+                accentColor = e.target.value; 
+                updateUIColors(); 
+            });
             gridColorPicker.addEventListener('input', e => { gridColor = e.target.value; });
             itemOpacitySlider.addEventListener('input', (e) => {
                 const newOpacity = parseFloat(e.target.value);
@@ -672,12 +964,20 @@
 
             // Selection Toolbar listeners
             toggleBoxStyleBtn.addEventListener('click', toggleBoxStyle);
+            groupBtn.addEventListener('click', groupSelectedItems);
+            ungroupBtn.addEventListener('click', ungroupSelectedItems);
             scaleBtn.addEventListener('click', () => setActiveGizmo('scale'));
             rotateBtn.addEventListener('click', () => setActiveGizmo('rotate'));
             pinBtn.addEventListener('click', togglePin);
             deleteSelectionBtn.addEventListener('click', deleteSelectedItems);
             bringFrontBtn.addEventListener('click', bringSelectedToFront);
             sendBackBtn.addEventListener('click', sendSelectedToBack);
+            fontFamilySelect.addEventListener('change', setTextFontFamily);
+            textAlignLeftBtn.addEventListener('click', () => setTextAlign('left'));
+            textAlignCenterBtn.addEventListener('click', () => setTextAlign('center'));
+            textAlignRightBtn.addEventListener('click', () => setTextAlign('right'));
+            textStyleBoldBtn.addEventListener('click', toggleTextStyleBold);
+            textStyleItalicBtn.addEventListener('click', toggleTextStyleItalic);
 
             // Text and color picker listeners
             textEditor.addEventListener('blur', finishEditingText);
@@ -724,7 +1024,7 @@
             
             if (showGrid) drawGrid();
             
-            // Draw all items
+            // 1. Draw all items
             items.forEach(item => {
                 if(item.isHidden) return;
                 ctx.save();
@@ -749,13 +1049,19 @@
                     drawTextItem(ctx, item);
                 } else if (item.type === 'box') {
                     drawBoxItem(ctx, item);
+                } else if (item.type === 'stroke') {
+                    drawStrokeItem(ctx, item);
+                } else if (item.type === 'group') {
+                    drawGroupItem(ctx, item);
                 }
                 ctx.restore();
-
-                // Draw selection outline after restoring context to avoid shadow on it
-                if (selectedItems.includes(item)) drawSelection(item);
             });
             
+            // 2. Draw selections on top of all items
+            selectedItems.forEach(item => {
+                drawSelection(item);
+            });
+
             if(isSelectingBox) drawSelectionBox();
             ctx.restore();
         }
@@ -767,7 +1073,7 @@
                 return; 
             }
             
-            // For a single selected arrow, draw its handles
+            // For a single selected arrow or stroke, draw its handles/box
             if (item.type === 'arrow' && !item.isPinned) {
                  const handleSize = 8 / cameraZoom, gizmoColor = invertColor(canvasBackgroundColor);
                 ctx.save();
@@ -784,6 +1090,10 @@
                 if (hoveredArrowHandle === 'end') { ctx.strokeStyle = accentColor; ctx.lineWidth = 2 / cameraZoom; ctx.stroke(); }
                 ctx.restore();
                 return; 
+            }
+             if (item.type === 'stroke') {
+                drawSelectionOutline(item);
+                return;
             }
 
             // For other single selected items, draw outline and gizmos
@@ -824,13 +1134,11 @@
 
         function drawSelectionOutline(item) {
             ctx.save();
-            const centerX = item.x + item.width / 2, centerY = item.y + item.height / 2;
-            ctx.translate(centerX, centerY);
-            ctx.rotate(item.rotation);
+            const box = getItemBoundingBox(item);
             ctx.strokeStyle = accentColor;
             ctx.lineWidth = 2 / cameraZoom;
             ctx.setLineDash([6 / cameraZoom, 4 / cameraZoom]);
-            ctx.strokeRect(-item.width / 2, -item.height / 2, item.width, item.height);
+            ctx.strokeRect(box.x, box.y, box.width, box.height);
             ctx.restore();
         }
 
@@ -895,8 +1203,11 @@
 
             // Prepare text
             context.fillStyle = accentColor;
-            context.font = `bold ${item.fontSize}px 'Inter', sans-serif`;
-            context.textAlign = 'center';
+            const style = item.fontStyle || 'normal';
+            const weight = item.fontWeight || 'bold';
+            const family = item.fontFamily || 'Inter';
+            context.font = `${style} ${weight} ${item.fontSize}px '${family}', sans-serif`;
+            context.textAlign = item.textAlign || 'center';
             context.textBaseline = 'middle';
 
             const words = item.text.split(' ');
@@ -919,9 +1230,16 @@
             const lineHeight = item.fontSize * 1.4;
             const totalTextHeight = lines.length * lineHeight;
             let startY = -totalTextHeight / 2 + lineHeight / 2;
+            
+            let textX = 0;
+            if (context.textAlign === 'left') {
+                textX = -item.width / 2 + padding;
+            } else if (context.textAlign === 'right') {
+                textX = item.width / 2 - padding;
+            }
 
             lines.forEach((line, index) => {
-                context.fillText(line, 0, startY + index * lineHeight);
+                context.fillText(line, textX, startY + index * lineHeight);
             });
             
             context.restore();
@@ -945,37 +1263,141 @@
             context.restore();
         }
 
+        function drawStrokeItem(context, item) {
+            if (item.points.length < 2) return;
+            context.save();
+            context.strokeStyle = item.color;
+            context.lineWidth = 4 / cameraZoom;
+            context.lineCap = 'round';
+            context.lineJoin = 'round';
+            context.beginPath();
+            context.moveTo(item.points[0].x, item.points[0].y);
+            for (let i = 1; i < item.points.length; i++) {
+                context.lineTo(item.points[i].x, item.points[i].y);
+            }
+            context.stroke();
+            context.restore();
+        }
+
+        function drawGroupItem(context, group) {
+            context.save();
+            context.globalAlpha *= group.opacity ?? 1;
+
+            // The main 'draw' function already sets up drop shadow.
+            // We just need to apply the group's transform.
+            const centerX = group.x + group.width / 2;
+            const centerY = group.y + group.height / 2;
+            context.translate(centerX, centerY);
+            context.rotate(group.rotation);
+            context.translate(-centerX, -centerY);
+
+            // Now, call the standard draw functions for each child.
+            // These functions expect world coordinates, so we must provide them.
+            // The context is already rotated, so these world coordinates will be drawn in the right place.
+            group.items.forEach(item => {
+                const tempWorldItem = { ...item };
+                // We calculate the item's world coordinates as if the group wasn't rotated.
+                // The context's rotation will handle placing it correctly.
+                tempWorldItem.x += group.x;
+                tempWorldItem.y += group.y;
+
+                if (tempWorldItem.type === 'arrow') {
+                    tempWorldItem.startX += group.x;
+                    tempWorldItem.startY += group.y;
+                    tempWorldItem.endX += group.x;
+                    tempWorldItem.endY += group.y;
+                } else if (tempWorldItem.type === 'stroke') {
+                    tempWorldItem.points = item.points.map(p => ({ x: p.x + group.x, y: p.y + group.y }));
+                }
+
+                // Draw the child item. The individual draw functions will handle their own internal rotation.
+                if (tempWorldItem.type === 'image') {
+                    const itemCenterX = tempWorldItem.x + tempWorldItem.width / 2, itemCenterY = tempWorldItem.y + tempWorldItem.height / 2;
+                    context.save();
+                    context.translate(itemCenterX, itemCenterY);
+                    context.rotate(tempWorldItem.rotation); // Its own rotation
+                    context.translate(-itemCenterX, -itemCenterY);
+                    if (tempWorldItem.img.complete) {
+                        context.drawImage(tempWorldItem.img, tempWorldItem.x, tempWorldItem.y, tempWorldItem.width, tempWorldItem.height);
+                    }
+                    context.restore();
+                } else if (tempWorldItem.type === 'arrow') {
+                    drawArrow(context, tempWorldItem);
+                } else if (tempWorldItem.type === 'text') {
+                    drawTextItem(context, tempWorldItem);
+                } else if (tempWorldItem.type === 'box') {
+                    drawBoxItem(context, tempWorldItem);
+                } else if (tempWorldItem.type === 'stroke') {
+                    drawStrokeItem(context, tempWorldItem);
+                }
+            });
+
+            context.restore();
+        }
+
         // --- EVENT HANDLERS & INPUT ---
 
         function handleKeyDown(e) {
             const key = e.key.toLowerCase();
             if (currentlyEditingText) return;
 
+            if (key === 'escape') {
+                e.preventDefault();
+                 if (helpModalOverlay.style.display === 'flex') {
+                    helpModalOverlay.style.display = 'none';
+                    return;
+                }
+                if (currentTool) {
+                    setCurrentTool(null);
+                } else if (selectedItems.length > 0) {
+                    selectedItems = [];
+                    updateSelectionToolbar();
+                    updateLeftBarState();
+                }
+                return;
+            }
+
             // New, Save, Open, and Undo shortcuts
             if (e.shiftKey && key === 'n') { e.preventDefault(); confirmNewBoard(); return; }
-            if (key === 'h') { e.preventDefault(); toggleHelpFooter(); return; }
+            if (key === 'h') { e.preventDefault(); helpModalOverlay.style.display = 'flex'; return; }
             
             if (e.ctrlKey) {
                 if (e.shiftKey && key === 'z') { e.preventDefault(); redoLastAction(); return; }
+                if (e.shiftKey && key === 'g') { e.preventDefault(); ungroupSelectedItems(); return; }
                 if (key === 's') { e.preventDefault(); saveProject(); return; }
                 if (key === 'o') { e.preventDefault(); projectInput.click(); return; }
                 if (key === 'z') { e.preventDefault(); undoLastAction(); return; }
                 if (key === 'a') { e.preventDefault(); selectedItems = [...items]; updateSelectionToolbar(); updateLeftBarState(); return; }
+                if (key === 'c') { e.preventDefault(); copyItems(); return; }
+                if (key === 'x') { e.preventDefault(); cutItems(); return; }
+                if (key === 'v') { e.preventDefault(); pasteItems(); return; }
+                if (key === 'd') { e.preventDefault(); duplicateItems(); return; }
+                if (key === 'g') { e.preventDefault(); groupSelectedItems(); return; }
             }
             if (e.shiftKey && key === 's') { e.preventDefault(); saveAsPng(); return; }
+            if (e.shiftKey && key === 'a') {
+                e.preventDefault();
+                if (selectedItems.length >= 2 && !isMovingItems) {
+                    autoAlignSelection();
+                }
+                return;
+            }
             
             // Tool shortcuts
+            if (key === 'v') { e.preventDefault(); setCurrentTool(null); return; }
             if (key === 'g') { e.preventDefault(); showGrid = !showGrid; showGridToggle.checked = showGrid; return; }
             if (key === 'a') { e.preventDefault(); setCurrentTool('arrow'); return; }
             if (key === 't') { e.preventDefault(); setCurrentTool('text'); return; }
             if (key === 'i') { e.preventDefault(); imageInput.click(); return; }
             if (key === 'b') { e.preventDefault(); setCurrentTool('box'); return; }
+            if (key === 'd') { e.preventDefault(); setCurrentTool('draw'); return; }
+            if (key === 'e') { e.preventDefault(); setCurrentTool('eyedropper'); return; }
 
             if (selectedItems.length === 0) return;
 
             // Layering shortcuts
-            if (key === 'pageup') { e.preventDefault(); bringSelectedToFront(); return; }
-            if (key === 'pagedown') { e.preventDefault(); sendSelectedToBack(); return; }
+            if (key === 'pageup' || key === 'home') { e.preventDefault(); bringSelectedToFront(); return; }
+            if (key === 'pagedown' || key === 'end') { e.preventDefault(); sendSelectedToBack(); return; }
             
             if (key === 'delete' || key === 'backspace') { e.preventDefault(); deleteSelectedItems(); return; }
             
@@ -998,7 +1420,17 @@
 
         function onMouseDown(e) {
             if (currentlyEditingText) { finishEditingText(); return; }
-            const worldPos = screenToWorld(getEventLocation(e));
+            const screenPos = getEventLocation(e);
+            const worldPos = screenToWorld(screenPos);
+
+            if (currentTool === 'eyedropper') {
+                const pixel = ctx.getImageData(screenPos.x, screenPos.y, 1, 1).data;
+                const hexColor = rgbToHex(pixel[0], pixel[1], pixel[2]);
+                accentColor = hexColor;
+                updateUIColors();
+                setCurrentTool(null);
+                return;
+            }
 
             // Left click
             if (e.button === 0) {
@@ -1011,13 +1443,32 @@
                     const gizmo = getGizmoAtPosition(worldPos);
                     if (gizmo && !selectedItems[0].isPinned) {
                         isTransforming = true;
-                        originalItemState = { 
-                            ...selectedItems[0], 
-                            centerX: selectedItems[0].x + selectedItems[0].width / 2, 
-                            centerY: selectedItems[0].y + selectedItems[0].height / 2, 
-                            startAngle: Math.atan2(worldPos.y - (selectedItems[0].y + selectedItems[0].height / 2), worldPos.x - (selectedItems[0].x + selectedItems[0].width / 2)), 
-                            startDist: Math.hypot(worldPos.x - (selectedItems[0].x + selectedItems[0].width / 2), worldPos.y - (selectedItems[0].y + selectedItems[0].height / 2)), 
-                        };
+                        const itemToTransform = selectedItems[0];
+                        
+                        originalItemState = JSON.parse(JSON.stringify(itemToTransform));
+                        if (itemToTransform.type === 'image') {
+                            originalItemState.img = itemToTransform.img;
+                        } else if (itemToTransform.type === 'group') {
+                            itemToTransform.items.forEach((child, i) => {
+                                if (child.type === 'image') originalItemState.items[i].img = child.img;
+                            });
+                        }
+                        
+                        originalItemState.centerX = itemToTransform.x + itemToTransform.width / 2;
+                        originalItemState.centerY = itemToTransform.y + itemToTransform.height / 2;
+                        originalItemState.startAngle = Math.atan2(worldPos.y - originalItemState.centerY, worldPos.x - originalItemState.centerX);
+                        originalItemState.startDist = Math.hypot(worldPos.x - originalItemState.centerY, worldPos.y - originalItemState.centerX);
+
+                        // Calculate and store the pivot point (opposite corner) for scaling
+                        if (gizmo === 'scale') {
+                            const pivotLocal = { x: -originalItemState.width / 2, y: -originalItemState.height / 2 };
+                            const cos = Math.cos(originalItemState.rotation);
+                            const sin = Math.sin(originalItemState.rotation);
+                            const pivotWorldX = pivotLocal.x * cos - pivotLocal.y * sin + originalItemState.centerX;
+                            const pivotWorldY = pivotLocal.x * sin + pivotLocal.y * cos + originalItemState.centerY;
+                            originalItemState.pivot = { x: pivotWorldX, y: pivotWorldY };
+                        }
+
                         return;
                     }
                 }
@@ -1029,9 +1480,11 @@
                     if(currentTool === 'arrow') {
                         newItem = { id: Date.now(), type: 'arrow', startX: worldPos.x, startY: worldPos.y, endX: worldPos.x, endY: worldPos.y, rotation: 0, isPinned: false, x: worldPos.x, y: worldPos.y, width: 0, height: 0, opacity: 1 };
                     } else if (currentTool === 'text') {
-                        newItem = { id: Date.now(), type: 'text', text: 'Type...', x: worldPos.x, y: worldPos.y, width: 0, height: 0, fontSize: 32, rotation: 0, isPinned: false, opacity: 1 };
+                        newItem = { id: Date.now(), type: 'text', text: 'Type...', x: worldPos.x, y: worldPos.y, width: 0, height: 0, fontSize: 32, rotation: 0, isPinned: false, opacity: 1, fontFamily: 'Inter', textAlign: 'center', fontWeight: 'bold', fontStyle: 'normal' };
                     } else if (currentTool === 'box') {
                         newItem = { id: Date.now(), type: 'box', color: accentColor, x: worldPos.x, y: worldPos.y, width: 0, height: 0, rotation: 0, isPinned: false, style: 'fill', opacity: 1 };
+                    } else if (currentTool === 'draw') {
+                        newItem = { id: Date.now(), type: 'stroke', points: [{x: worldPos.x, y: worldPos.y}], color: accentColor, isPinned: false, x: worldPos.x, y: worldPos.y, width: 0, height: 0, opacity: 1 };
                     }
                     items.push(newItem);
                     selectedItems = [newItem];
@@ -1056,7 +1509,14 @@
                             moveStart.y = worldPos.y;
                             selectedItems.forEach(item => {
                                 item.originalX = item.x; item.originalY = item.y;
-                                if(item.type === 'arrow'){ item.originalStartX = item.startX; item.originalStartY = item.startY; item.originalEndX = item.endX; item.originalEndY = item.endY; }
+                                if (item.type === 'arrow'){ 
+                                    item.originalStartX = item.startX; item.originalStartY = item.startY; 
+                                    item.originalEndX = item.endX; item.originalEndY = item.endY; 
+                                } else if (item.type === 'stroke') {
+                                    item.originalPoints = JSON.parse(JSON.stringify(item.points));
+                                } else if (item.type === 'group') {
+                                    item.originalItems = JSON.parse(JSON.stringify(item.items));
+                                }
                             });
                         } else {
                             // Clicked on empty space, start selection box
@@ -1107,7 +1567,7 @@
                 // Reset states
                 isDrawing = false; isMovingItems = false; isTransforming = false; isTransformingArrow = false;
                 transformingHandle = null; originalItemState = null;
-                setCurrentTool(null);
+                // setCurrentTool(null); // REMOVED to keep tool active
             } else if (e.button === 1) { 
                 isDragging = false; 
                 canvas.classList.remove('grabbing'); 
@@ -1138,46 +1598,125 @@
                     if (e.shiftKey) newRotation = Math.round(newRotation / (Math.PI / 12)) * (Math.PI / 12);
                     selectedItem.rotation = newRotation;
                 } else if (activeGizmo === 'scale') {
-                    const currentDist = Math.hypot(worldPos.x - centerX, worldPos.y - centerY);
-                    const scaleFactor = Math.max(0.1, currentDist / originalItemState.startDist);
-                    selectedItem.width = originalItemState.width * scaleFactor;
-                    selectedItem.height = originalItemState.height * scaleFactor;
-                    selectedItem.x = centerX - selectedItem.width / 2;
-                    selectedItem.y = centerY - selectedItem.height / 2;
-                    if(selectedItem.type === 'text') selectedItem.fontSize = originalItemState.fontSize * scaleFactor;
+                    let scaleFactor = 1;
+                    // SHIFT key is pressed: scale from top-left pivot
+                    if (e.shiftKey) {
+                        const pivot = originalItemState.pivot;
+                        const vecWorld = { x: worldPos.x - pivot.x, y: worldPos.y - pivot.y };
+                        const origHandleLocal = { x: originalItemState.width / 2, y: originalItemState.height / 2 };
+                        const cos = Math.cos(originalItemState.rotation);
+                        const sin = Math.sin(originalItemState.rotation);
+                        const origHandleWorldOffsetX = origHandleLocal.x * cos - origHandleLocal.y * sin;
+                        const origHandleWorldOffsetY = origHandleLocal.x * sin + origHandleLocal.y * cos;
+                        const origDiagVec = { x: origHandleWorldOffsetX * 2, y: origHandleWorldOffsetY * 2 };
+                        const projectionLength = (vecWorld.x * origDiagVec.x + vecWorld.y * origDiagVec.y) / Math.hypot(origDiagVec.x, origDiagVec.y);
+                        const originalDiagonalLength = Math.hypot(originalItemState.width, originalItemState.height);
+                        scaleFactor = projectionLength / originalDiagonalLength;
+
+                        if (scaleFactor > 0.05) { // Prevent inverting the item
+                            const newWidth = originalItemState.width * scaleFactor;
+                            const newHeight = originalItemState.height * scaleFactor;
+                            const newCenterX = pivot.x + (origDiagVec.x / 2) * scaleFactor;
+                            const newCenterY = pivot.y + (origDiagVec.y / 2) * scaleFactor;
+                            
+                            selectedItem.width = newWidth;
+                            selectedItem.height = newHeight;
+                            selectedItem.x = newCenterX - newWidth / 2;
+                            selectedItem.y = newCenterY - newHeight / 2;
+                        }
+
+                    } else { // Default behavior: scale from center
+                        const currentDist = Math.hypot(worldPos.x - centerX, worldPos.y - centerY);
+                        scaleFactor = Math.max(0.1, currentDist / originalItemState.startDist);
+                        selectedItem.width = originalItemState.width * scaleFactor;
+                        selectedItem.height = originalItemState.height * scaleFactor;
+                        selectedItem.x = centerX - selectedItem.width / 2;
+                        selectedItem.y = centerY - selectedItem.height / 2;
+                    }
+
+                    // After scaling the item container, scale its contents
+                    if (selectedItem.type === 'group') {
+                        const oldWidth = originalItemState.width;
+                        const oldHeight = originalItemState.height;
+                        const scaleX = selectedItem.width / oldWidth;
+                        const scaleY = selectedItem.height / oldHeight;
+
+                        if (isFinite(scaleX) && isFinite(scaleY)) {
+                            selectedItem.items.forEach((child, index) => {
+                                const originalChild = originalItemState.items[index];
+                                child.x = originalChild.x * scaleX;
+                                child.y = originalChild.y * scaleY;
+                                child.width = originalChild.width * scaleX;
+                                child.height = originalChild.height * scaleY;
+
+                                if (child.type === 'text') {
+                                    child.fontSize = originalChild.fontSize * Math.min(scaleX, scaleY);
+                                } else if (child.type === 'arrow') {
+                                    child.startX = originalChild.startX * scaleX; child.startY = originalChild.startY * scaleY;
+                                    child.endX = originalChild.endX * scaleX; child.endY = originalChild.endY * scaleY;
+                                } else if (child.type === 'stroke') {
+                                    child.points = originalChild.points.map(p => ({ x: p.x * scaleX, y: p.y * scaleY }));
+                                }
+                            });
+                        }
+                    } else if (selectedItem.type === 'text') {
+                        selectedItem.fontSize = originalItemState.fontSize * scaleFactor;
+                    }
                 }
             } 
-            // FIX: Unified item movement
+            // Handle item movement
             else if(isMovingItems && selectedItems.length > 0) {
                  const dx = worldPos.x - moveStart.x;
                  const dy = worldPos.y - moveStart.y;
+                 const currentSnap = e.shiftKey ? !snapToGrid : snapToGrid;
+
                 selectedItems.forEach(item => {
                     if (item.isPinned) return;
-                    let newX = item.originalX + dx;
-                    let newY = item.originalY + dy;
-                    if (snapToGrid && selectedItems.length === 1) {
-                        newX = Math.round(newX / gridSize) * gridSize;
-                        newY = Math.round(newY / gridSize) * gridSize;
+                    
+                    let finalDx = dx;
+                    let finalDy = dy;
+
+                    if (currentSnap && selectedItems.length === 1) {
+                        const snappedX = Math.round((item.originalX + dx) / gridSize) * gridSize;
+                        const snappedY = Math.round((item.originalY + dy) / gridSize) * gridSize;
+                        finalDx = snappedX - item.originalX;
+                        finalDy = snappedY - item.originalY;
                     }
-                    const itemDx = newX - item.x, itemDy = newY - item.y;
-                    if (item.type === 'arrow') { 
-                        item.startX += itemDx; item.startY += itemDy; 
-                        item.endX += itemDx; item.endY += itemDy; 
+
+                    item.x = item.originalX + finalDx;
+                    item.y = item.originalY + finalDy;
+
+                    if (item.type === 'arrow') {
+                        item.startX = item.originalStartX + finalDx;
+                        item.startY = item.originalStartY + finalDy;
+                        item.endX = item.originalEndX + finalDx;
+                        item.endY = item.originalEndY + finalDy;
+                    } else if (item.type === 'stroke') {
+                        item.points = item.originalPoints.map(p => ({
+                            x: p.x + finalDx,
+                            y: p.y + finalDy
+                        }));
                     }
-                    item.x = newX;
-                    item.y = newY;
                 });
             } 
             // Handle drawing new items
             else if (isDrawing && selectedItems.length === 1) {
                 const selectedItem = selectedItems[0];
                  if(selectedItem.type === 'arrow') {
-                    selectedItem.endX = worldPos.x; selectedItem.endY = worldPos.y;
+                    selectedItem.endX = worldPos.x;
+                    selectedItem.endY = worldPos.y;
                 } else if(selectedItem.type === 'text' || selectedItem.type === 'box') {
                     selectedItem.width = Math.abs(worldPos.x - selectedItem.x);
                     selectedItem.height = Math.abs(worldPos.y - selectedItem.y);
                     selectedItem.x = Math.min(worldPos.x, selectedItem.x);
                     selectedItem.y = Math.min(worldPos.y, selectedItem.y);
+                } else if (selectedItem.type === 'stroke') {
+                    selectedItem.points.push({x: worldPos.x, y: worldPos.y});
+                    const box = getItemBoundingBox(selectedItem);
+                    selectedItem.x = box.x;
+                    selectedItem.y = box.y;
+                    selectedItem.width = box.width;
+                    selectedItem.height = box.height;
                 }
             } 
             // Handle camera panning
@@ -1292,6 +1831,10 @@
                     drawTextItem(exportCtx, item);
                 } else if (item.type === 'box') {
                     drawBoxItem(exportCtx, item);
+                } else if (item.type === 'stroke') {
+                    drawStrokeItem(exportCtx, item);
+                } else if (item.type === 'group') {
+                    drawGroupItem(exportCtx, item);
                 }
                 exportCtx.restore();
             });
@@ -1304,10 +1847,16 @@
         function saveProject() {
             const projectState = {
                 items: items.map(item => {
+                    const serializableItem = { ...item };
                     if (item.type === 'image') {
-                        return { ...item, img: item.img.src }; // Convert image to data URL string
+                        serializableItem.img = item.img.src;
+                    } else if (item.type === 'group') {
+                        serializableItem.items = item.items.map(child => {
+                            if (child.type === 'image') return { ...child, img: child.img.src };
+                            return child;
+                        });
                     }
-                    return item;
+                    return serializableItem;
                 }),
                 cameraOffset, cameraZoom, canvasBackgroundColor, accentColor, gridColor,
                 showGrid, snapToGrid, showDropShadow, gridSize, gridOpacity
@@ -1338,26 +1887,22 @@
                 selectedItems = [];
                 
                 // Recreate items, especially Image objects
-                state.items.forEach(itemState => {
-                    const newItem = { ...(itemState.opacity !== undefined ? {} : { opacity: 1 }), ...itemState };
-                    if (newItem.type === 'image') {
-                        const img = new Image();
-                        items.push({ ...newItem, img: img });
-                        img.src = newItem.img;
-                    } else {
-                        items.push(newItem);
-                    }
-                });
+                const recreateItems = (itemList) => {
+                    return itemList.map(itemState => {
+                        const newItem = { ...(itemState.opacity !== undefined ? {} : { opacity: 1 }), ...itemState };
+                        if (newItem.type === 'image') {
+                            const img = new Image();
+                            newItem.img = img;
+                            img.src = itemState.img;
+                        } else if (newItem.type === 'group') {
+                            newItem.items = recreateItems(newItem.items);
+                        }
+                        return newItem;
+                    });
+                };
+                items = recreateItems(state.items);
                 
                 // Update UI to reflect loaded settings
-                bgColorPicker.value = canvasBackgroundColor;
-                accentColorPicker.value = accentColor;
-                gridColorPicker.value = gridColor;
-                showGridToggle.checked = showGrid;
-                snapGridToggle.checked = snapToGrid;
-                dropShadowToggle.checked = showDropShadow;
-                gridSizeSlider.value = gridSize;
-                gridOpacitySlider.value = gridOpacity;
                 historyStack = [];
                 historyIndex = -1;
                 updateUIColors();
@@ -1433,6 +1978,128 @@
             });
             setTimeout(saveStateForUndo, 500); // Wait for images to likely have loaded
         }
+
+        // --- CLIPBOARD FUNCTIONS ---
+
+        function copyItems() {
+            if (selectedItems.length === 0) return;
+            clipboard = selectedItems.map(item => {
+                const copy = JSON.parse(JSON.stringify(item));
+                // Handle non-serializable data
+                if (item.type === 'image') {
+                    copy.imgSrc = item.img.src;
+                    delete copy.img;
+                } else if (item.type === 'group') {
+                    item.items.forEach((child, i) => {
+                         if (child.type === 'image') {
+                            copy.items[i].imgSrc = child.img.src;
+                            delete copy.items[i].img;
+                        }
+                    });
+                }
+                return copy;
+            });
+        }
+
+        function cutItems() {
+            if (selectedItems.length === 0) return;
+            copyItems();
+            deleteSelectedItems();
+        }
+
+        function pasteItems() {
+            if (clipboard.length === 0) return;
+            
+            const newItems = [];
+            const pasteOffset = 20 / cameraZoom;
+
+            const recreateItemFromClipboard = (clipboardItem) => {
+                 const newItem = JSON.parse(JSON.stringify(clipboardItem));
+                newItem.id = Date.now() + Math.random();
+                newItem.isPinned = false; // Always paste as unpinned
+                newItem.x += pasteOffset;
+                newItem.y += pasteOffset;
+
+                if (newItem.type === 'arrow') {
+                    newItem.startX += pasteOffset; newItem.startY += pasteOffset;
+                    newItem.endX += pasteOffset; newItem.endY += pasteOffset;
+                } else if (newItem.type === 'stroke') {
+                    newItem.points.forEach(p => { p.x += pasteOffset; p.y += pasteOffset; });
+                } else if (newItem.type === 'image') {
+                    const img = new Image();
+                    img.src = newItem.imgSrc;
+                    delete newItem.imgSrc;
+                    newItem.img = img;
+                } else if (newItem.type === 'group') {
+                    newItem.items = newItem.items.map(child => {
+                        const newChild = { ...child };
+                        if (newChild.type === 'image') {
+                            const img = new Image();
+                            img.src = newChild.imgSrc;
+                            delete newChild.imgSrc;
+                            newChild.img = img;
+                        }
+                        return newChild;
+                    });
+                }
+                return newItem;
+            }
+
+            clipboard.forEach(clipboardItem => {
+                const newItem = recreateItemFromClipboard(clipboardItem);
+                items.push(newItem);
+                newItems.push(newItem);
+            });
+
+            selectedItems = newItems;
+            updateSelectionToolbar();
+            updateLeftBarState();
+            saveStateForUndo();
+        }
+
+        function duplicateItems() {
+            if (selectedItems.length === 0) return;
+
+            const itemsToDuplicate = selectedItems;
+            const newItems = [];
+            const duplicateOffset = 20 / cameraZoom;
+
+            itemsToDuplicate.forEach(item => {
+                const newItem = JSON.parse(JSON.stringify(item));
+                newItem.id = Date.now() + Math.random();
+                newItem.isPinned = false; // Always duplicate as unpinned
+                newItem.x += duplicateOffset;
+                newItem.y += duplicateOffset;
+
+                if (newItem.type === 'arrow') {
+                    newItem.startX += duplicateOffset;
+                    newItem.startY += duplicateOffset;
+                    newItem.endX += duplicateOffset;
+                    newItem.endY += duplicateOffset;
+                } else if (newItem.type === 'stroke') {
+                    newItem.points.forEach(p => { p.x += duplicateOffset; p.y += duplicateOffset; });
+                } else if (newItem.type === 'image') {
+                    const img = new Image();
+                    img.src = item.img.src;
+                    newItem.img = img;
+                } else if (newItem.type === 'group') {
+                    newItem.items = item.items.map(child => {
+                        const newChild = JSON.parse(JSON.stringify(child));
+                        if(child.type === 'image') newChild.img = child.img;
+                        return newChild;
+                    });
+                }
+
+                items.push(newItem);
+                newItems.push(newItem);
+            });
+
+            selectedItems = newItems;
+            updateSelectionToolbar();
+            updateLeftBarState();
+            saveStateForUndo();
+        }
+
 
         // --- ITEM & SELECTION LOGIC ---
 
@@ -1514,6 +2181,13 @@
                     item.startY += deltaY;
                     item.endX += deltaX;
                     item.endY += deltaY;
+                } else if (item.type === 'stroke') {
+                    item.points.forEach(p => {
+                        p.x += deltaX;
+                        p.y += deltaY;
+                    });
+                } else if (item.type === 'group') {
+                    // Moving a group moves its children implicitly
                 }
             });
             saveStateForUndo();
@@ -1522,40 +2196,60 @@
 
         // --- UI & STATE MANAGEMENT ---
 
-        function toggleHelpFooter() {
-            isHelpOpen = !isHelpOpen;
-            instructionsFooter.classList.toggle('closed', !isHelpOpen);
-        }
-
         function updateLeftBarState() {
             alignBtn.disabled = selectedItems.length < 2;
         }
 
         function updateUIColors() {
-            const [accentH, accentS] = hexToHsl(accentColor);
-            const [, , bgL] = hexToHsl(canvasBackgroundColor);
-            const uiLuminosity = Math.max(0.1, Math.min(0.9, 1.0 - bgL));
-            const uiSaturation = Math.min(accentS, 0.6); 
-            const [uiR, uiG, uiB] = hslToRgb(accentH, uiSaturation, uiLuminosity);
-            const hoverLuminosity = uiLuminosity + (uiLuminosity > 0.5 ? -0.1 : 0.1);
-            const [hvrR, hvrG, hvrB] = hslToRgb(accentH, uiSaturation, hoverLuminosity);
-            
-            const root = document.documentElement.style;
-            root.setProperty('--bg-page', canvasBackgroundColor);
-            root.setProperty('--bg-ui', `rgba(${uiR}, ${uiG}, ${uiB}, 0.5)`);
-            root.setProperty('--bg-ui-hover', `rgba(${hvrR}, ${hvrG}, ${hvrB}, 0.65)`);
-            root.setProperty('--text-color', uiLuminosity > 0.55 ? '#0f172a' : '#f8fafc');
-            root.setProperty('--text-color-light', uiLuminosity > 0.55 ? '#334155' : '#94a3b8');
-            root.setProperty('--border-color', hslToHex(accentH, uiSaturation, uiLuminosity + (uiLuminosity > 0.5 ? -0.15 : 0.15)));
-            root.setProperty('--switch-bg-checked', accentColor);
+            const rootStyle = document.documentElement.style;
+
+            // --- NEW GLASS UI VALUES ---
+            const uiBgColor = 'rgba(35, 38, 51, 0.4)'; // A dark, slightly transparent background
+            const uiBgHoverColor = 'rgba(55, 58, 71, 0.5)';
+            const textColor = '#e2e8f0'; // A light grey/off-white
+            const textLightColor = '#94a3b8'; // A dimmer grey for secondary text
+            const borderColor = 'rgba(255, 255, 255, 0.1)'; // A very subtle white border
+
+            rootStyle.setProperty('--bg-page', canvasBackgroundColor);
+            rootStyle.setProperty('--bg-ui', uiBgColor);
+            rootStyle.setProperty('--bg-ui-hover', uiBgHoverColor);
+            rootStyle.setProperty('--text-color', textColor);
+            rootStyle.setProperty('--text-color-light', textLightColor);
+            rootStyle.setProperty('--text-color-strong', '#ffffff');
+            rootStyle.setProperty('--border-color', borderColor);
+            rootStyle.setProperty('--switch-bg-checked', accentColor);
+
+            // Sync UI controls with state
+            canvas.style.backgroundColor = canvasBackgroundColor;
+            bgColorPicker.value = canvasBackgroundColor;
+            accentColorPicker.value = accentColor;
+            toolbarAccentColorPicker.value = accentColor;
+            gridColorPicker.value = gridColor;
         }
 
         function setCurrentTool(tool) {
-            currentTool = currentTool === tool ? null : tool;
-            document.querySelectorAll('.tool-button').forEach(btn => btn.classList.remove('active'));
-            if (currentTool === 'arrow') addArrowBtn.classList.add('active');
-            if (currentTool === 'text') addTextBtn.classList.add('active');
-            if (currentTool === 'box') addBoxBtn.classList.add('active');
+            if (currentTool === tool && tool !== null) { // allow deselecting to null
+                return;
+            }
+             currentTool = tool;
+
+            document.querySelectorAll('#left-bar .tool-button').forEach(btn => btn.classList.remove('active'));
+            canvas.classList.remove('eyedropper-active');
+
+            if (currentTool === null) {
+                selectToolBtn.classList.add('active');
+            } else if (currentTool === 'arrow') {
+                addArrowBtn.classList.add('active');
+            } else if (currentTool === 'text') {
+                addTextBtn.classList.add('active');
+            } else if (currentTool === 'box') {
+                addBoxBtn.classList.add('active');
+            } else if (currentTool === 'draw') {
+                drawBtn.classList.add('active');
+            } else if (currentTool === 'eyedropper') {
+                eyedropperBtn.classList.add('active');
+                canvas.classList.add('eyedropper-active');
+            }
         }
 
         function setActiveGizmo(gizmo) { 
@@ -1571,20 +2265,74 @@
             } 
         }
 
+        function setTextAlign(align) {
+            if (selectedItems.length === 1 && selectedItems[0].type === 'text') {
+                selectedItems[0].textAlign = align;
+                updateSelectionToolbar();
+                saveStateForUndo();
+            }
+        }
+
+        function setTextFontFamily(e) {
+            if (selectedItems.length === 1 && selectedItems[0].type === 'text') {
+                selectedItems[0].fontFamily = e.target.value;
+                saveStateForUndo();
+            }
+        }
+
+        function toggleTextStyleBold() {
+            if (selectedItems.length === 1 && selectedItems[0].type === 'text') {
+                const item = selectedItems[0];
+                item.fontWeight = item.fontWeight === 'bold' ? 'normal' : 'bold';
+                updateSelectionToolbar();
+                saveStateForUndo();
+            }
+        }
+
+        function toggleTextStyleItalic() {
+            if (selectedItems.length === 1 && selectedItems[0].type === 'text') {
+                const item = selectedItems[0];
+                item.fontStyle = item.fontStyle === 'italic' ? 'normal' : 'italic';
+                updateSelectionToolbar();
+                saveStateForUndo();
+            }
+        }
+
         function updateSelectionToolbar() {
             const hasBox = selectedItems.some(item => item.type === 'box');
-            const canTransform = selectedItems.length === 1 && selectedItems[0].type !== 'arrow';
+            const isStroke = selectedItems.length === 1 && selectedItems[0].type === 'stroke';
+            const canTransform = selectedItems.length === 1 && selectedItems[0].type !== 'arrow' && !isStroke;
             const canPin = selectedItems.length > 0;
             const canLayer = selectedItems.length > 0;
+            const canGroup = selectedItems.length > 1;
+            const canUngroup = selectedItems.length === 1 && selectedItems[0].type === 'group';
+            const isSingleText = selectedItems.length === 1 && selectedItems[0].type === 'text';
 
             if (selectedItems.length > 0) {
                 selectionToolbar.style.display = 'flex';
+                
+                textToolsContainer.style.display = isSingleText ? 'flex' : 'none';
+                if(isSingleText) {
+                    const item = selectedItems[0];
+                    fontFamilySelect.value = item.fontFamily || 'Inter';
+                    
+                    [textAlignLeftBtn, textAlignCenterBtn, textAlignRightBtn].forEach(btn => btn.classList.remove('active'));
+                    if (item.textAlign === 'left') textAlignLeftBtn.classList.add('active');
+                    else if (item.textAlign === 'right') textAlignRightBtn.classList.add('active');
+                    else textAlignCenterBtn.classList.add('active');
+
+                    textStyleBoldBtn.classList.toggle('active', item.fontWeight === 'bold');
+                    textStyleItalicBtn.classList.toggle('active', item.fontStyle === 'italic');
+                }
+
                 toggleBoxStyleBtn.style.display = hasBox ? 'flex' : 'none';
                 scaleBtn.style.display = canTransform ? 'flex' : 'none';
                 rotateBtn.style.display = canTransform ? 'flex' : 'none';
                 pinBtn.style.display = canPin ? 'flex' : 'none';
                 bringFrontBtn.style.display = canLayer ? 'flex' : 'none';
                 sendBackBtn.style.display = canLayer ? 'flex' : 'none';
+                groupBtn.style.display = canGroup ? 'flex' : 'none';
+                ungroupBtn.style.display = canUngroup ? 'flex' : 'none';
                 
                 scaleBtn.classList.toggle('active', activeGizmo === 'scale');
                 rotateBtn.classList.toggle('active', activeGizmo === 'rotate');
@@ -1601,6 +2349,7 @@
             } else { 
                 selectionToolbar.style.display = 'none';
                 boxColorPickerContainer.style.display = 'none';
+                textToolsContainer.style.display = 'none';
                 activeGizmo = null; 
             }
         }
@@ -1625,13 +2374,17 @@
             currentlyEditingText = item;
             item.isHidden = true;
             const screenPos = worldToScreen({ x: item.x, y: item.y });
-            const screenWidth = item.width * cameraZoom, screenHeight = item.height * cameraZoom;
+            const screenWidth = item.width * cameraZoom;
             Object.assign(textEditor.style, {
                 display: 'block', left: `${screenPos.x}px`, top: `${screenPos.y}px`,
                 width: `${screenWidth}px`, height: 'auto',
                 transform: `rotate(${item.rotation}rad)`, transformOrigin: 'top left',
                 color: accentColor, backgroundColor: hexToRgba(accentColor, 0.1),
                 fontSize: `${item.fontSize * cameraZoom}px`,
+                fontFamily: item.fontFamily || 'Inter',
+                textAlign: item.textAlign || 'center',
+                fontWeight: item.fontWeight || 'bold',
+                fontStyle: item.fontStyle || 'normal',
             });
             textEditor.value = item.text === "Type..." ? "" : item.text;
             textEditor.focus();
@@ -1645,7 +2398,11 @@
             if (currentlyEditingText) {
                 currentlyEditingText.text = textEditor.value.trim() || "Type...";
                 // Recalculate width/height based on new text content
-                ctx.font = `bold ${currentlyEditingText.fontSize}px 'Inter', sans-serif`;
+                const item = currentlyEditingText;
+                const style = item.fontStyle || 'normal';
+                const weight = item.fontWeight || 'bold';
+                const family = item.fontFamily || 'Inter';
+                ctx.font = `${style} ${weight} ${item.fontSize}px '${family}', sans-serif`;
                 const lines = textEditor.value.split('\n');
                 let maxWidth = 0;
                 lines.forEach(line => {
@@ -1671,10 +2428,12 @@
         // --- HISTORY & UNDO FUNCTIONS ---
 
         function saveStateForUndo() {
-            const stateToSave = JSON.stringify(items.map(item => {
-                if (item.type === 'image') return { ...item, img: item.img.src };
-                return item;
-            }));
+            const stateToSave = JSON.stringify(items, (key, value) => {
+                if (key === 'img') {
+                    return value.src; // Store image source instead of the object
+                }
+                return value;
+            });
 
             if (historyIndex < historyStack.length - 1) {
                 historyStack = historyStack.slice(0, historyIndex + 1);
@@ -1692,21 +2451,24 @@
         }
         
         function loadStateFromHistory(stateJson) {
-            const historyItems = JSON.parse(stateJson);
-            items = [];
+            const historyState = JSON.parse(stateJson);
             selectedItems = [];
             updateSelectionToolbar();
             updateLeftBarState();
 
-            historyItems.forEach(itemState => {
-                if (itemState.type === 'image') {
-                    const img = new Image();
-                    items.push({ ...itemState, img: img });
-                    img.src = itemState.img;
-                } else {
-                    items.push(itemState);
-                }
-            });
+            const recreateItems = (itemList) => {
+                return itemList.map(itemState => {
+                    if (itemState.type === 'image') {
+                        const img = new Image();
+                        img.src = itemState.img;
+                        return { ...itemState, img: img };
+                    } else if (itemState.type === 'group') {
+                        return { ...itemState, items: recreateItems(itemState.items) };
+                    }
+                    return itemState;
+                });
+            };
+            items = recreateItems(historyState);
         }
 
         function undoLastAction() {
@@ -1725,6 +2487,148 @@
             }
         }
 
+        // --- GROUPING FUNCTIONS ---
+
+        function groupSelectedItems() {
+            if (selectedItems.length <= 1) return;
+
+            saveStateForUndo(); 
+
+            const box = getCollectiveBoundingBox(selectedItems);
+            
+            const newGroup = {
+                id: Date.now(),
+                type: 'group',
+                x: box.x, y: box.y,
+                width: box.width, height: box.height,
+                rotation: 0,
+                isPinned: false,
+                opacity: 1,
+                items: []
+            };
+
+            selectedItems.forEach(item => {
+                const relativeItem = JSON.parse(JSON.stringify(item));
+                
+                relativeItem.x -= newGroup.x;
+                relativeItem.y -= newGroup.y;
+
+                if (relativeItem.type === 'arrow') {
+                    relativeItem.startX -= newGroup.x; relativeItem.startY -= newGroup.y;
+                    relativeItem.endX -= newGroup.x; relativeItem.endY -= newGroup.y;
+                } else if (relativeItem.type === 'stroke') {
+                    relativeItem.points.forEach(p => {
+                        p.x -= newGroup.x; p.y -= newGroup.y;
+                    });
+                }
+                if (item.type === 'image') {
+                    relativeItem.img = item.img;
+                }
+
+                newGroup.items.push(relativeItem);
+            });
+            
+            const idsToGroup = new Set(selectedItems.map(item => item.id));
+            items = items.filter(item => !idsToGroup.has(item.id));
+
+            items.push(newGroup);
+            selectedItems = [newGroup];
+
+            updateSelectionToolbar();
+            updateLeftBarState();
+        }
+
+        function ungroupSelectedItems() {
+            const groupsToUngroup = selectedItems.filter(item => item.type === 'group');
+            if (groupsToUngroup.length === 0) return;
+
+            saveStateForUndo();
+
+            const newlyUngroupedItems = [];
+            const groupIdsToRemove = new Set();
+
+            groupsToUngroup.forEach(group => {
+                groupIdsToRemove.add(group.id);
+
+                const groupCenterX = group.x + group.width / 2;
+                const groupCenterY = group.y + group.height / 2;
+                const cosR = Math.cos(group.rotation);
+                const sinR = Math.sin(group.rotation);
+
+                group.items.forEach(child => {
+                    const newWorldItem = JSON.parse(JSON.stringify(child));
+                    newWorldItem.id = Date.now() + Math.random();
+
+                    if (child.type === 'image') {
+                        newWorldItem.img = child.img;
+                    }
+
+                    if (newWorldItem.type === 'arrow' || newWorldItem.type === 'stroke') {
+                        const transformPoint = (p) => {
+                            const childPointX_rel_group_topleft = child.x + p.x;
+                            const childPointY_rel_group_topleft = child.y + p.y;
+                            const px_from_group_center = childPointX_rel_group_topleft - group.width / 2;
+                            const py_from_group_center = childPointY_rel_group_topleft - group.height / 2;
+                            const rot_px = px_from_group_center * cosR - py_from_group_center * sinR;
+                            const rot_py = px_from_group_center * sinR + py_from_group_center * cosR;
+                            return { x: groupCenterX + rot_px, y: groupCenterY + rot_py };
+                        };
+                         if (newWorldItem.type === 'arrow') {
+                            const newStart = transformPoint({x: child.startX - child.x, y: child.startY - child.y});
+                            const newEnd = transformPoint({x: child.endX - child.x, y: child.endY - child.y});
+                            newWorldItem.startX = newStart.x; newWorldItem.startY = newStart.y;
+                            newWorldItem.endX = newEnd.x; newWorldItem.endY = newEnd.y;
+                        } else { // stroke
+                            newWorldItem.points = child.points.map(p => transformPoint({x: p.x - child.x, y: p.y - child.y}));
+                        }
+                    }
+
+                    const childCenterX_rel = child.x + child.width / 2;
+                    const childCenterY_rel = child.y + child.height / 2;
+                    const childCenterX_from_group_center = childCenterX_rel - group.width / 2;
+                    const childCenterY_from_group_center = childCenterY_rel - group.height / 2;
+                    const rotatedX = childCenterX_from_group_center * cosR - childCenterY_from_group_center * sinR;
+                    const rotatedY = childCenterX_from_group_center * sinR + childCenterY_from_group_center * cosR;
+                    const newWorldCenterX = groupCenterX + rotatedX;
+                    const newWorldCenterY = groupCenterY + rotatedY;
+                    newWorldItem.x = newWorldCenterX - child.width / 2;
+                    newWorldItem.y = newWorldCenterY - child.height / 2;
+                    newWorldItem.rotation = (child.rotation || 0) + group.rotation;
+                    
+                    items.push(newWorldItem);
+                    newlyUngroupedItems.push(newWorldItem);
+                });
+            });
+
+            items = items.filter(item => !groupIdsToRemove.has(item.id));
+            selectedItems = newlyUngroupedItems;
+
+            updateSelectionToolbar();
+            updateLeftBarState();
+        }
+
+        // --- PALETTE FUNCTIONS ---
+        function buildPaletteMenu() {
+            palettePanel.innerHTML = '';
+            colorPalettes.forEach(p => {
+                const option = document.createElement('div');
+                option.className = 'palette-option';
+                option.innerHTML = `
+                    <div class="palette-color" style="background-color: ${p.bg}"></div>
+                    <div class="palette-color" style="background-color: ${p.accent}"></div>
+                    <div class="palette-color" style="background-color: ${p.grid}"></div>
+                `;
+                option.addEventListener('click', () => {
+                    canvasBackgroundColor = p.bg;
+                    accentColor = p.accent;
+                    gridColor = p.grid;
+                    updateUIColors();
+                    palettePanel.classList.remove('open');
+                });
+                palettePanel.appendChild(option);
+            });
+        }
+
 
         // --- UTILITY FUNCTIONS ---
         
@@ -1733,16 +2637,46 @@
         function worldToScreen(p) { return { x: (p.x + cameraOffset.x - canvas.width / 2) * cameraZoom + canvas.width / 2, y: (p.y + cameraOffset.y - canvas.height / 2) * cameraZoom + canvas.height / 2 }; }
         
         function getItemAtPosition(pos) {
-            for (let i = items.length - 1; i >= 0; i--) {
+             for (let i = items.length - 1; i >= 0; i--) {
                 const item = items[i];
-                if (item.type === 'arrow') {
-                    if (Math.sqrt(distToSegmentSquared(pos, {x: item.startX, y: item.startY}, {x: item.endX, y: item.endY})) < 10 / cameraZoom) return item;
-                } else { 
-                    const centerX = item.x + item.width / 2, centerY = item.y + item.height / 2;
-                    const dx = pos.x - centerX, dy = pos.y - centerY, angle = -item.rotation;
-                    const rotatedX = dx * Math.cos(angle) - dy * Math.sin(angle);
-                    const rotatedY = dx * Math.sin(angle) + dy * Math.cos(angle);
-                    if (rotatedX > -item.width / 2 && rotatedX < item.width / 2 && rotatedY > -item.height / 2 && rotatedY < item.height / 2) return item;
+                const box = getItemBoundingBox(item);
+                if (pos.x >= box.x && pos.x <= box.x + box.width && pos.y >= box.y && pos.y <= box.y + box.height) {
+                    if (item.type === 'group') {
+                        // Transform the click position into the group's local, unrotated space
+                        const groupCenterX = item.x + item.width / 2;
+                        const groupCenterY = item.y + item.height / 2;
+                        const dx = pos.x - groupCenterX;
+                        const dy = pos.y - groupCenterY;
+                        const cos = Math.cos(-item.rotation);
+                        const sin = Math.sin(-item.rotation);
+                        const rotatedX = dx * cos - dy * sin;
+                        const rotatedY = dx * sin + dy * cos;
+                        const localClickX = rotatedX + groupCenterX - item.x;
+                        const localClickY = rotatedY + groupCenterY - item.y;
+                        
+                        // Check children recursively (we can just check one level for now)
+                        for (let j = item.items.length - 1; j >= 0; j--) {
+                            const child = item.items[j];
+                             const childBox = {x: child.x, y: child.y, width: child.width, height: child.height}; //getItemBoundingBox(child) is overkill here
+                            if(localClickX >= childBox.x && localClickX <= childBox.x + childBox.width && localClickY >= childBox.y && localClickY <= childBox.y + childBox.height){
+                                return item; // If a child is hit, return the parent group
+                            }
+                        }
+                    }
+
+                    if (item.type === 'stroke') {
+                        for (let j = 0; j < item.points.length - 1; j++) {
+                            if (Math.sqrt(distToSegmentSquared(pos, item.points[j], item.points[j+1])) < 10 / cameraZoom) return item;
+                        }
+                    } else if (item.type === 'arrow') {
+                        if (Math.sqrt(distToSegmentSquared(pos, {x: item.startX, y: item.startY}, {x: item.endX, y: item.endY})) < 10 / cameraZoom) return item;
+                    } else { 
+                        const centerX = item.x + item.width / 2, centerY = item.y + item.height / 2;
+                        const dx = pos.x - centerX, dy = pos.y - centerY, angle = -item.rotation;
+                        const rotatedX = dx * Math.cos(angle) - dy * Math.sin(angle);
+                        const rotatedY = dx * Math.sin(angle) + dy * Math.cos(angle);
+                        if (rotatedX > -item.width / 2 && rotatedX < item.width / 2 && rotatedY > -item.height / 2 && rotatedY < item.height / 2) return item;
+                    }
                 }
             }
             return null;
@@ -1751,7 +2685,7 @@
         function getGizmoAtPosition(worldPos) {
             if (selectedItems.length !== 1 || !activeGizmo) return null;
             const item = selectedItems[0];
-            if (item.isPinned || item.type === 'arrow') return null;
+            if (item.isPinned || item.type === 'arrow' || item.type === 'stroke') return null;
             
             const handleSize = 14 / cameraZoom, centerX = item.x + item.width / 2, centerY = item.y + item.height / 2;
             if (activeGizmo === 'rotate') {
@@ -1792,6 +2726,19 @@
         }
 
         function getItemBoundingBox(item) {
+             if (item.type === 'group') {
+                 // The bounding box for a group is its own rotated rectangle
+             }
+             if (item.type === 'stroke') {
+                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+                item.points.forEach(p => {
+                    minX = Math.min(minX, p.x);
+                    minY = Math.min(minY, p.y);
+                    maxX = Math.max(maxX, p.x);
+                    maxY = Math.max(maxY, p.y);
+                });
+                return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+            }
             if (item.type === 'arrow') {
                 return { x: Math.min(item.startX, item.endX), y: Math.min(item.startY, item.endY), width: Math.abs(item.startX - item.endX), height: Math.abs(item.startY - item.endY) };
             }
@@ -1812,6 +2759,9 @@
             if(hex.length==4){r="0x"+hex[1]+hex[1];g="0x"+hex[2]+hex[2];b="0x"+hex[3]+hex[3];}else if(hex.length==7){r="0x"+hex[1]+hex[2];g="0x"+hex[3]+hex[4];b="0x"+hex[5]+hex[6];}
             return`rgba(${+r},${+g},${+b},${alpha})`;
         }
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
         function distSq(p1,p2){return Math.pow(p1.x-p2.x,2)+Math.pow(p1.y-p2.y,2);}
         function distToSegmentSquared(p,v,w){
             const l2=distSq(v,w); if(l2===0)return distSq(p,v);
@@ -1826,7 +2776,7 @@
             return'#'+padZero(r)+padZero(g)+padZero(b);
         }
         function hslToRgb(h,s,l){let c=(1-Math.abs(2*l-1))*s,x=c*(1-Math.abs((h/60)%2-1)),m=l-c/2,r=0,g=0,b=0;if(0<=h&&h<60){r=c;g=x;b=0;}else if(60<=h&&h<120){r=x;g=c;b=0;}else if(120<=h&&h<180){r=0;g=c;b=x;}else if(180<=h&&h<240){r=0;g=x;b=c;}else if(240<=h&&h<300){r=x;g=0;b=c;}else if(300<=h&&h<360){r=c;g=0;b=x;}return[Math.round((r+m)*255),Math.round((g+m)*255),Math.round((b+m)*255)];}
-        function hexToHsl(H){let r=0,g=0,b=0;if(H.length==4){r="0x"+H[1]+H[1];g="0x"+H[2]+H[2];b="0x"+H[3]+H[3];}else if(H.length==7){r="0x"+H[1]+H[2];g="0x"+H[3]+H[4];b="0x"+H[5]+H[6];}r/=255;g/=255;b/=255;let cmin=Math.min(r,g,b),cmax=Math.max(r,g,b),delta=cmax-cmin,h=0,s=0,l=0;if(delta==0)h=0;else if(cmax==r)h=((g-b)/delta)%6;else if(cmax==g)h=(b-r)/delta+2;else h=(r-g)/delta+4;h=Math.round(h*60);if(h<0)h+=360;l=(cmax+cmin)/2;s=delta==0?0:delta/(1-Math.abs(2*l-1));return[h,s,l];}
+        function hexToHsl(H){let r=0,g=0,b=0;if(H.length==4){r="0x"+H[1]+H[1];g="0x"+H[2]+H[2];b="0x"+H[3]+H[3];}else if(H.length==7){r="0x"+H[1]+H[2];g="0x"+H[3]+H[4];b="0x"+H[5]+hex[6];}r/=255;g/=255;b/=255;let cmin=Math.min(r,g,b),cmax=Math.max(r,g,b),delta=cmax-cmin,h=0,s=0,l=0;if(delta==0)h=0;else if(cmax==r)h=((g-b)/delta)%6;else if(cmax==g)h=(b-r)/delta+2;else h=(r-g)/delta+4;h=Math.round(h*60);if(h<0)h+=360;l=(cmax+cmin)/2;s=delta==0?0:delta/(1-Math.abs(2*l-1));return[h,s,l];}
         function hslToHex(h,s,l){let c=(1-Math.abs(2*l-1))*s,x=c*(1-Math.abs((h/60)%2-1)),m=l-c/2,r=0,g=0,b=0;if(0<=h&&h<60){r=c;g=x;b=0;}else if(60<=h&&h<120){r=x;g=c;b=0;}else if(180<=h&&h<180){r=0;g=c;b=x;}else if(180<=h&&h<240){r=0;g=x;b=c;}else if(240<=h&&h<300){r=x;g=0;b=c;}else if(300<=h&&h<360){r=c;g=0;b=x;}r=Math.round((r+m)*255).toString(16);g=Math.round((g+m)*255).toString(16);b=Math.round((b+m)*255).toString(16);if(r.length==1)r="0"+r;if(g.length==1)g="0"+g;if(b.length==1)b="0"+b;return"#"+r+g+b;}
         function padZero(str,len){len=len||2;const zeros=new Array(len+1).join('0');return(zeros+str).slice(-len);}
         function adjustZoom(e,z){
@@ -1843,11 +2793,12 @@
         cameraOffset = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
         resizeCanvas();
         setupEventListeners();
-        canvas.style.backgroundColor=canvasBackgroundColor;
+        buildPaletteMenu();
         updateUIColors();
         saveStateForUndo(); // Save the initial empty state
         gameLoop();
     </script>
 </body>
 </html>
+
 
