@@ -14,3 +14,4 @@ _Is now ready to create quick moodboards and story boards / sketches, to start v
 # Support!
 
 If you want you can help me on my patreon so i can keep building more tools and improve this one even further!, ty.
+https://www.patreon.com/cw/bdvd
