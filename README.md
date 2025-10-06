@@ -20,6 +20,10 @@ Existing tools often demand too much setup and hassle. I built this for my own w
 
 ## Getting Started
 
+## Demo
+Try it live: https://davidbrum25.github.io/moodinfinite/index.html.
+
+
 ### Prerequisites
 - A modern web browser (Chrome, Firefox, Safari, or Edge).
 
@@ -46,9 +50,9 @@ No build tools or servers required—it's a fully static web app!
 ![Screenshot of Mood Infinite in action](https://github.com/davidbrum25/moodinfinite/blob/main/_screenshots/preview_1.jpg)
 ![Screenshot of Mood Infinite in action](https://github.com/davidbrum25/moodinfinite/blob/main/_screenshots/preview_2.jpg)
 
+## Known issues:
+1. Still need to make a working version for tablets and phones!.
 
-## Demo
-Try it live: https://davidbrum25.github.io/moodinfinite/index.html.
 
 ## Support the Project
 If you find this tool useful and want to help me build more, consider supporting me on Patreon. Your contributions keep the vibes flowing!  
