@@ -1,12 +1,60 @@
-# Moodinfinite
-Basic webapp for creating moodboards or basic storyboards.
+# Mood Infinite
 
-**Vibecode** with Gemini 2.5.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 
+A simple, no-fuss web application for creating moodboards and basic storyboards. Built with the help of Gemini 2.5 for quick vibe-coding.
 
-# Why!
+Created by me for me and my team but release to everybody.
 
-Made for my ussage, as all apps always require to much of a hassle to use, i just wanit something to start a project and move one.
+## Overview
 
+Mood Infinite lets you rapidly assemble visual ideas without the overhead of complex tools. It's designed for creators who want to jump straight into sketching concepts for projects like design, film, or storytelling.
 
-_Is now ready to create quick moodboards and story boards / sketches, to start visual projects._
+### Key Features
+- **Quick Moodboard Creation**: Drag-and-drop images, notes, and colors to build inspiring boards.
+- **Storyboard Sketching**: Simple canvas for rough sketches and sequence planning.
+- **Minimalist Interface**: No accounts, no installs—just open and create.
+- **Export Options**: Save your boards as images or PDFs for sharing.
+
+## Why Mood Infinite?
+
+Existing tools often demand too much setup and hassle. I built this for my own workflow: something lightweight to start a project and move on quickly. Now, it's ready for anyone to create quick moodboards, storyboards, or sketches to kick off visual projects.
+
+## Getting Started
+
+### Prerequisites
+- A modern web browser (Chrome, Firefox, Safari, or Edge).
+
+### Installation
+1. Clone the repository:
+   ```
+   git clone https://github.com/davidbrum25/moodinfinite.git
+   ```
+2. Navigate to the project directory:
+   ```
+   cd moodinfinite
+   ```
+3. Open `index.html` in your web browser.
+
+No build tools or servers required—it's a fully static web app!
+
+### Usage
+1. Open the app in your browser.
+2. Drag images from your computer or use the built-in search for stock assets.
+3. Add text notes, shapes, or freehand sketches to your canvas.
+4. Arrange elements into a board or sequence.
+5. Export your creation and iterate!
+
+![Screenshot of Mood Infinite in action](_screenshots/preview_1.png)
+![Screenshot of Mood Infinite in action](_screenshots/preview_2.png)
+
+## Demo
+Try it live: https://davidbrum25.github.io/moodinfinite/index.html.
+
+## Support the Project
+If you find this tool useful and want to help me build more, consider supporting me on Patreon. Your contributions keep the vibes flowing!  
+[Support on Patreon](https://www.patreon.com/cw/bdvd)
+
+---
+
+*Built with ❤️ for creators. Questions? Open an issue!*
