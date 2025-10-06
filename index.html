@@ -515,11 +515,38 @@
             color: var(--text-color-strong);
             font-weight: 700;
         }
+        
+        /* Linktree Button Styles */
+        #linktree-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 4999;
+            background-color: var(--bg-ui);
+            color: var(--text-color);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        #linktree-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+            color: var(--switch-bg-checked);
+        }
 
         /* Toast Notification Styles */
         #toast-container {
             position: fixed;
-            bottom: 1.5rem;
+            bottom: calc(1.5rem + 56px + 1rem); /* Adjusted to be above the linktree button */
             right: 1.5rem;
             z-index: 5000;
             display: flex;
@@ -847,9 +874,21 @@
                     <li><strong>Save Project:</strong> Ctrl+S</li>
                     <li><strong>Export as PNG:</strong> Shift+S</li>
                 </ul>
+
+                <h3>Credits</h3>
+                <p style="line-height: 1.8;">
+                    Made by H. David Brum<br>
+                    <a href="mailto:davidbrum.5@gmail.com" target="_blank" style="color: var(--switch-bg-checked); text-decoration: none;">davidbrum.5@gmail.com</a><br>
+                    <a href="https://linktr.ee/davidbrum" target="_blank" style="color: var(--switch-bg-checked); text-decoration: none;">linktr.ee/davidbrum</a>
+                </p>
             </div>
         </div>
     </div>
+
+    <!-- Linktree Button -->
+    <a href="https://linktr.ee/davidbrum" target="_blank" id="linktree-btn" title="H. David Brum Links">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link" style="width: 60%;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg>
+    </a>
 
     <!-- Toast Notification Container -->
     <div id="toast-container"></div>
@@ -2916,4 +2955,3 @@
     </script>
 </body>
 </html>
-
