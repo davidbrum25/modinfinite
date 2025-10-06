@@ -1,7 +1,5 @@
 # Mood Infinite
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-
 A simple, no-fuss web application for creating moodboards and basic storyboards. Built with the help of Gemini 2.5 for quick vibe-coding.
 
 Created by me for me and my team but release to everybody.
