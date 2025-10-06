@@ -45,8 +45,9 @@ No build tools or servers required—it's a fully static web app!
 4. Arrange elements into a board or sequence.
 5. Export your creation and iterate!
 
-![Screenshot of Mood Infinite in action](_screenshots/preview_1.png)
-![Screenshot of Mood Infinite in action](_screenshots/preview_2.png)
+![Screenshot of Mood Infinite in action](https://github.com/davidbrum25/moodinfinite/blob/main/_screenshots/preview_1.jpg)
+![Screenshot of Mood Infinite in action](https://github.com/davidbrum25/moodinfinite/blob/main/_screenshots/preview_2.jpg)
+
 
 ## Demo
 Try it live: https://davidbrum25.github.io/moodinfinite/index.html.
