@@ -2,8 +2,8 @@
 <html lang="en" style="--bg-page: #0d0d0d; --bg-ui: rgba(35, 38, 51, 0.4); --bg-ui-hover: rgba(55, 58, 71, 0.5); --text-color: #e2e8f0; --text-color-light: #94a3b8; --text-color-strong: #ffffff; --border-color: rgba(255, 255, 255, 0.1); --switch-bg-checked: #429eff;">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moodinfinite v0.6.5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Moodinfinite v0.7</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 	<link rel="icon" href="fav_icon_alternative.png" type="image/png">
     <style>
@@ -13,6 +13,7 @@
             overflow: hidden;
             background-color: var(--bg-page);
             margin: 0;
+            overscroll-behavior: none;
         }
         canvas {
             display: block;
@@ -635,11 +636,94 @@
                 transform: translateX(100%);
             }
         }
+
+        /* Responsive Styles for Mobile and Tablet */
+        @media (max-width: 768px) {
+            #top-bar {
+                top: 0.5rem;
+                padding: 0.2rem;
+                gap: 0.1rem;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                width: auto;
+                max-width: 95vw;
+                overflow-x: auto;
+                transform: translateX(0);
+                left: 0.5rem;
+            }
+            #project-name-input {
+                display: none;
+            }
+            #top-bar div[style*="margin-left: auto"] {
+                display: none;
+            }
+            #top-bar .tool-button, #left-bar .tool-button {
+                padding: 0.4rem;
+                flex-shrink: 0;
+            }
+            #top-bar svg, #left-bar svg {
+                width: 18px;
+                height: 18px;
+            }
+            #left-bar {
+                flex-direction: row;
+                top: auto;
+                bottom: 0.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                max-width: 95vw;
+                overflow-x: auto;
+                padding: 0.2rem;
+            }
+            .separator {
+                margin: 0.1rem 0.25rem;
+            }
+            #context-menu {
+                width: 220px;
+                padding: 0.5rem;
+            }
+            .menu-label {
+                font-size: 0.8rem;
+            }
+            #selection-toolbar {
+                padding: 0.25rem;
+                gap: 0.2rem;
+                max-width: 95vw;
+                overflow-x: auto;
+            }
+            .selection-tool-btn {
+                padding: 0.3rem;
+            }
+            #help-modal {
+                padding: 1rem 1.5rem;
+                width: 95%;
+                height: 85vh;
+            }
+            #help-modal h2 {
+                font-size: 1.25rem;
+            }
+            .help-content p, .help-content li {
+                font-size: 0.85rem;
+            }
+            #footer-container {
+                bottom: 4rem;
+                right: 0.5rem;
+                gap: 0.5rem;
+            }
+             #version-info {
+                display: none; /* Hide version text on small screens */
+            }
+            #toast-container {
+                bottom: 7rem;
+                right: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="top-bar">
-        <div id="app-logo" title="Moodinfinite v0.6.5" style="display: flex; align-items: center; padding-left: 0.25rem; padding-right: 0.25rem; cursor: default;">
+        <div id="app-logo" title="Moodinfinite v0.7" style="display: flex; align-items: center; padding-left: 0.25rem; padding-right: 0.25rem; cursor: default;">
             <img src="fav_icon_alternative.png" alt="Logo" style="width: 24px; height: 24px;">
         </div>
         <div style="width: 1px; background-color: var(--border-color); margin: 0 0.25rem; align-self: stretch;"></div>
@@ -883,9 +967,9 @@
                 
                 <h3>Core Concepts</h3>
                 <ul>
-                    <li><strong>Panning:</strong> Middle-click and drag, or hold <strong>Space</strong> and left-click and drag to move around the canvas.</li>
-                    <li><strong>Zooming:</strong> Use the mouse wheel to zoom in and out.</li>
-                    <li><strong>Selecting:</strong> Click on an item to select it. Hold <strong>Shift</strong> and click to select multiple items. Click and drag on an empty area to create a selection box.</li>
+                    <li><strong>Panning & Zooming:</strong> On Desktop, use the mouse wheel to zoom and middle-click (or Space + left-click) to pan. On Touch devices, <strong>pinch with two fingers</strong> to zoom and <strong>drag with two fingers</strong> to pan.</li>
+                    <li><strong>Context Menu:</strong> Right-click on Desktop. <strong>Long press</strong> on a Touch device.</li>
+                    <li><strong>Selecting:</strong> Tap or Click on an item to select it. Hold <strong>Shift</strong> and click to select multiple items. Click and drag on an empty area to create a selection box.</li>
                      <li><strong>Deselect:</strong> Press <strong>Escape</strong> to clear your current selection.</li>
                 </ul>
 
@@ -893,10 +977,10 @@
                  <ul>
                     <li><strong>Select (V):</strong> The default tool for selecting, moving, and interacting with items.</li>
                     <li><strong>Add Image (I):</strong> Opens a file dialog to add images. You can also paste images directly or drag-and-drop them onto the canvas.</li>
-                    <li><strong>Add Text (T):</strong> Click and drag to create a text box. Double-click an existing text box to edit it.</li>
-                    <li><strong>Add Arrow (A):</strong> Click and drag to draw an arrow.</li>
-                    <li><strong>Add Box (B):</strong> Click and drag to create a colored rectangle.</li>
-                    <li><strong>Add Grid (Shift+G):</strong> Click and drag to create a grid. Adjust rows and columns from the selection toolbar.</li>
+                    <li><strong>Add Text (T):</strong> Tap and drag to create a text box. Double-tap an existing text box to edit it.</li>
+                    <li><strong>Add Arrow (A):</strong> Tap and drag to draw an arrow.</li>
+                    <li><strong>Add Box (B):</strong> Tap and drag to create a colored rectangle.</li>
+                    <li><strong>Add Grid (Shift+G):</strong> Tap and drag to create a grid. Adjust rows and columns from the selection toolbar.</li>
                     <li><strong>Draw (D):</strong> Freehand drawing tool.</li>
                     <li><strong>Eyedropper (E):</strong> Pick a color from the canvas to set as your current accent color.</li>
                 </ul>
@@ -944,7 +1028,7 @@
     <!-- Footer container -->
     <div id="footer-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 4999; display: flex; align-items: center; gap: 0.75rem;">
         <div id="version-info" style="font-size: 0.75rem; color: var(--text-color-light); opacity: 0.5; pointer-events: none;">
-            MOODinfinite Current stable version: v0.6.5
+            MOODinfinite Current stable version: v0.7
         </div>
         <!-- Patreon Button -->
         <a href="https://www.patreon.com/cw/bdvd" target="_blank" class="footer-btn" title="Support on Patreon">
@@ -1066,14 +1150,23 @@
         // --- CORE FUNCTIONS ---
 
         function setupEventListeners() {
+            // Mouse Listeners
             canvas.addEventListener('mousedown', onMouseDown);
             canvas.addEventListener('mouseup', onMouseUp);
             canvas.addEventListener('mousemove', onMouseMove);
             canvas.addEventListener('dblclick', onDoubleClick);
             canvas.addEventListener('wheel', (e) => { e.preventDefault(); adjustZoom(e, -e.deltaY * SCROLL_SENSITIVITY); });
+            canvas.addEventListener('contextmenu', onContextMenu);
+            
+            // Touch Listeners for mobile/tablet support
+            canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+            canvas.addEventListener('touchend', onTouchEnd, { passive: false });
+            canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+            canvas.addEventListener('touchcancel', onTouchEnd, { passive: false });
+
+            // Window and Document Listeners
             window.addEventListener('resize', resizeCanvas);
             window.addEventListener('keydown', handleKeyDown);
-            canvas.addEventListener('contextmenu', onContextMenu);
             document.addEventListener('click', (e) => { 
                 if (!contextMenu.contains(e.target)) contextMenu.style.display = 'none';
                 if (palettePanel.classList.contains('open') && !palettePanel.contains(e.target) && e.target !== paletteBtn && !paletteBtn.contains(e.target)) {
@@ -2962,7 +3055,118 @@
                 toast.remove();
             }, 3000); // 3000ms total lifetime
         }
+        
+        // --- TOUCH HANDLING & MOBILE SUPPORT ---
 
+        let lastTap = 0;
+        let longPressTimer = null;
+        let isPinching = false;
+        let initialPinchDistance = null;
+        let lastPinchCenter = null;
+        let initialCameraZoomOnPinch = 1;
+
+        function onTouchStart(e) {
+            e.preventDefault();
+            clearTimeout(longPressTimer);
+
+            if (e.touches.length === 1 && !isPinching) {
+                const now = new Date().getTime();
+                const timeSinceLastTap = now - lastTap;
+                
+                if (timeSinceLastTap < 300 && timeSinceLastTap > 0) { // Double tap
+                    onDoubleClick(normalizeTouchEvent(e));
+                    lastTap = 0;
+                    return;
+                }
+                lastTap = now;
+
+                longPressTimer = setTimeout(() => {
+                    onContextMenu({ preventDefault: () => {}, ...normalizeTouchEvent(e) });
+                    if (navigator.vibrate) navigator.vibrate(50);
+                }, 750);
+
+                onMouseDown(normalizeTouchEvent(e));
+            } else if (e.touches.length === 2) {
+                // Entering pinch mode, cancel any single-touch actions
+                isDrawing = false; isMovingItems = false; isTransforming = false; isTransformingArrow = false; isSelectingBox = false;
+
+                isPinching = true;
+                initialPinchDistance = getPinchDistance(e);
+                lastPinchCenter = getPinchCenter(e);
+                initialCameraZoomOnPinch = cameraZoom;
+            }
+        }
+
+        function onTouchMove(e) {
+            e.preventDefault();
+            clearTimeout(longPressTimer);
+
+            if (e.touches.length === 1 && !isPinching) {
+                onMouseMove(normalizeTouchEvent(e));
+            } else if (e.touches.length === 2 && isPinching) {
+                const currentCenter = getPinchCenter(e);
+                
+                // --- PAN ---
+                const deltaX = currentCenter.x - lastPinchCenter.x;
+                const deltaY = currentCenter.y - lastPinchCenter.y;
+                cameraOffset.x += deltaX / cameraZoom;
+                cameraOffset.y += deltaY / cameraZoom;
+
+                // --- ZOOM ---
+                const newPinchDistance = getPinchDistance(e);
+                const zoomFactor = newPinchDistance / initialPinchDistance;
+                const newZoom = initialCameraZoomOnPinch * zoomFactor;
+                
+                const worldPosBeforeZoom = screenToWorld(currentCenter);
+                cameraZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
+                const worldPosAfterZoom = screenToWorld(currentCenter);
+                
+                cameraOffset.x += worldPosAfterZoom.x - worldPosBeforeZoom.x;
+                cameraOffset.y += worldPosAfterZoom.y - worldPosBeforeZoom.y;
+
+                lastPinchCenter = currentCenter;
+            }
+        }
+
+        function onTouchEnd(e) {
+            e.preventDefault();
+            clearTimeout(longPressTimer);
+
+            if (e.touches.length < 2) {
+                isPinching = false;
+                initialPinchDistance = null;
+                lastPinchCenter = null;
+            }
+
+            // onMouseUp handles resetting isMovingItems etc.
+            if (e.touches.length === 0) {
+                 onMouseUp(normalizeTouchEvent(e));
+            }
+        }
+
+        function getPinchDistance(e) {
+            const t1 = e.touches[0];
+            const t2 = e.touches[1];
+            return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+        }
+
+        function getPinchCenter(e) {
+            const t1 = e.touches[0];
+            const t2 = e.touches[1];
+            return { x: (t1.clientX + t2.clientX) / 2, y: (t1.clientY + t2.clientY) / 2 };
+        }
+
+        function normalizeTouchEvent(e) {
+            let touch;
+            if (e.touches && e.touches.length > 0) {
+                touch = e.touches[0];
+            } else if (e.changedTouches && e.changedTouches.length > 0) {
+                touch = e.changedTouches[0];
+            } else {
+                 return { clientX: 0, clientY: 0, button: 0, target: e.target };
+            }
+            return { clientX: touch.clientX, clientY: touch.clientY, button: 0, target: e.target };
+        }
 
         // --- UTILITY FUNCTIONS ---
         
@@ -3138,6 +3342,5 @@
     </script>
 </body>
 </html>
-"
-I have implemented the requested changes in the file index.html.
+
 
