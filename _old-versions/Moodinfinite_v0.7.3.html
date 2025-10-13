@@ -2,9 +2,9 @@
 <html lang="en" style="--bg-page: #0d0d0d; --bg-ui: rgba(35, 38, 51, 0.4); --bg-ui-hover: rgba(55, 58, 71, 0.5); --text-color: #e2e8f0; --text-color-light: #94a3b8; --text-color-strong: #ffffff; --border-color: rgba(255, 255, 255, 0.1); --switch-bg-checked: #429eff;">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moodinfinite v0.6.5</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Moodinfinite v0.7.3</title>
+    <style type="text/css">@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.0.16/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/vietnamese/400/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/cyrillic/400/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/cyrillic-ext/400/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/greek/400/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/greek-ext/400/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/latin-ext/700/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/greek-ext/700/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/greek/700/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/cyrillic-ext/700/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/vietnamese/700/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Roboto;font-style:normal;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/cyrillic/700/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/vietnamese/400/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/cyrillic/400/italic.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/greek-ext/400/italic.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/cyrillic-ext/400/italic.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/greek/400/italic.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/latin/400/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:400;src:url(/cf-fonts/s/roboto/5.0.11/latin-ext/400/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/cyrillic-ext/700/italic.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/latin/700/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/latin-ext/700/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/vietnamese/700/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/cyrillic/700/italic.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/greek/700/italic.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Roboto;font-style:italic;font-weight:700;src:url(/cf-fonts/s/roboto/5.0.11/greek-ext/700/italic.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Playfair Display;font-style:normal;font-weight:400;src:url(/cf-fonts/v/playfair-display/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Playfair Display;font-style:normal;font-weight:400;src:url(/cf-fonts/v/playfair-display/5.0.18/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Playfair Display;font-style:normal;font-weight:400;src:url(/cf-fonts/v/playfair-display/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Playfair Display;font-style:normal;font-weight:400;src:url(/cf-fonts/v/playfair-display/5.0.18/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Playfair Display;font-style:normal;font-weight:700;src:url(/cf-fonts/v/playfair-display/5.0.18/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Playfair Display;font-style:normal;font-weight:700;src:url(/cf-fonts/v/playfair-display/5.0.18/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Playfair Display;font-style:normal;font-weight:700;src:url(/cf-fonts/v/playfair-display/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Playfair Display;font-style:normal;font-weight:700;src:url(/cf-fonts/v/playfair-display/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Playfair Display;font-style:italic;font-weight:400;src:url(/cf-fonts/v/playfair-display/5.0.18/latin-ext/wght/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Playfair Display;font-style:italic;font-weight:400;src:url(/cf-fonts/v/playfair-display/5.0.18/latin/wght/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Playfair Display;font-style:italic;font-weight:400;src:url(/cf-fonts/v/playfair-display/5.0.18/cyrillic/wght/italic.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Playfair Display;font-style:italic;font-weight:400;src:url(/cf-fonts/v/playfair-display/5.0.18/vietnamese/wght/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Playfair Display;font-style:italic;font-weight:700;src:url(/cf-fonts/v/playfair-display/5.0.18/cyrillic/wght/italic.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Playfair Display;font-style:italic;font-weight:700;src:url(/cf-fonts/v/playfair-display/5.0.18/latin/wght/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Playfair Display;font-style:italic;font-weight:700;src:url(/cf-fonts/v/playfair-display/5.0.18/latin-ext/wght/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Playfair Display;font-style:italic;font-weight:700;src:url(/cf-fonts/v/playfair-display/5.0.18/vietnamese/wght/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/greek/wght/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:normal;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/greek-ext/wght/italic.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/greek/wght/italic.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/vietnamese/wght/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/latin-ext/wght/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/latin/wght/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/cyrillic/wght/italic.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:400;src:url(/cf-fonts/v/source-code-pro/5.0.16/cyrillic-ext/wght/italic.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/cyrillic-ext/wght/italic.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/greek-ext/wght/italic.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/greek/wght/italic.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/latin/wght/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/cyrillic/wght/italic.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/latin-ext/wght/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Source Code Pro;font-style:italic;font-weight:700;src:url(/cf-fonts/v/source-code-pro/5.0.16/vietnamese/wght/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}</style>
 	<link rel="icon" href="fav_icon_alternative.png" type="image/png">
     <style>
         /* CSS variables will be set dynamically by JavaScript */
@@ -13,6 +13,7 @@
             overflow: hidden;
             background-color: var(--bg-page);
             margin: 0;
+            overscroll-behavior: none;
         }
         canvas {
             display: block;
@@ -635,11 +636,94 @@
                 transform: translateX(100%);
             }
         }
+
+        /* Responsive Styles for Mobile and Tablet */
+        @media (max-width: 768px) {
+            #top-bar {
+                top: 0.5rem;
+                padding: 0.2rem;
+                gap: 0.1rem;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                width: auto;
+                max-width: 95vw;
+                overflow-x: auto;
+                transform: translateX(0);
+                left: 0.5rem;
+            }
+            #project-name-input {
+                display: none;
+            }
+            #top-bar div[style*="margin-left: auto"] {
+                display: none;
+            }
+            #top-bar .tool-button, #left-bar .tool-button {
+                padding: 0.4rem;
+                flex-shrink: 0;
+            }
+            #top-bar svg, #left-bar svg {
+                width: 18px;
+                height: 18px;
+            }
+            #left-bar {
+                flex-direction: row;
+                top: auto;
+                bottom: 0.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                max-width: 95vw;
+                overflow-x: auto;
+                padding: 0.2rem;
+            }
+            .separator {
+                margin: 0.1rem 0.25rem;
+            }
+            #context-menu {
+                width: 220px;
+                padding: 0.5rem;
+            }
+            .menu-label {
+                font-size: 0.8rem;
+            }
+            #selection-toolbar {
+                padding: 0.25rem;
+                gap: 0.2rem;
+                max-width: 95vw;
+                overflow-x: auto;
+            }
+            .selection-tool-btn {
+                padding: 0.3rem;
+            }
+            #help-modal {
+                padding: 1rem 1.5rem;
+                width: 95%;
+                height: 85vh;
+            }
+            #help-modal h2 {
+                font-size: 1.25rem;
+            }
+            .help-content p, .help-content li {
+                font-size: 0.85rem;
+            }
+            #footer-container {
+                bottom: 4rem;
+                right: 0.5rem;
+                gap: 0.5rem;
+            }
+             #version-info {
+                display: none; /* Hide version text on small screens */
+            }
+            #toast-container {
+                bottom: 7rem;
+                right: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="top-bar">
-        <div id="app-logo" title="Moodinfinite v0.6.5" style="display: flex; align-items: center; padding-left: 0.25rem; padding-right: 0.25rem; cursor: default;">
+        <div id="app-logo" title="Moodinfinite v0.7.3" style="display: flex; align-items: center; padding-left: 0.25rem; padding-right: 0.25rem; cursor: default;">
             <img src="fav_icon_alternative.png" alt="Logo" style="width: 24px; height: 24px;">
         </div>
         <div style="width: 1px; background-color: var(--border-color); margin: 0 0.25rem; align-self: stretch;"></div>
@@ -660,7 +744,7 @@
 			  <path d="M0 .5A.5.5 0 0 1 .5 0h5a.5.5 0 0 1 .5.5v5.277l4.147-4.131a.5.5 0 0 1 .707 0l3.535 3.536a.5.5 0 0 1 0 .708L10.261 10H15.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H3a3 3 0 0 1-2.121-.879A3 3 0 0 1 0 13.044m6-.21 7.328-7.3-2.829-2.828L6 7.188zM4.5 13a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M15 15v-4H9.258l-4.015 4zM0 .5v12.495zm0 12.495V13z"/>
 			</svg>
         </button>
-        <button id="open-help-btn" title="Help (H)" class="tool-button">
+        <button id="open-help-btn" title="Help" class="tool-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
         </button>
         <div style="margin-left: auto; display: flex; align-items: center; padding-right: 0.5rem;">
@@ -695,7 +779,7 @@
         
         <div class="separator"></div>
 
-        <button id="select-tool-btn" title="Select (V)" class="tool-button active">
+        <button id="select-tool-btn" title="Select (A)" class="tool-button active">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path><path d="M13 13l6 6"></path></svg>
         </button>
         <button id="add-text-btn" title="Add Text (T)" class="tool-button">
@@ -704,19 +788,19 @@
         <button id="draw-btn" title="Draw (D)" class="tool-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path></svg>
         </button>
-        <button id="add-arrow-btn" title="Add Arrow (A)" class="tool-button">
+        <button id="add-arrow-btn" title="Add Arrow (Shift+A)" class="tool-button">
            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </button>
         <button id="add-box-btn" title="Add Box (B)" class="tool-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
         </button>
-        <button id="add-grid-btn" title="Add Grid (Shift+G)" class="tool-button">
+        <button id="add-grid-btn" title="Add Grid (Alt+G)" class="tool-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
         </button>
 
         <div class="separator"></div>
         
-        <button id="align-btn" title="Auto Align Selection (Shift+A)" class="tool-button" disabled>
+        <button id="align-btn" title="Auto Align Selection" class="tool-button" disabled>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
         </button>
     </div>
@@ -782,6 +866,11 @@
                 <div id="grid-size-value" class="slider-value-box">50px</div>
             </div>
         </div>
+         <div class="border-t my-2" id="download-separator" style="border-color: var(--border-color); display: none;"></div>
+         <div class="menu-item" id="download-image-btn" style="display: none;">
+             <span class="menu-label">Download Source</span>
+             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+         </div>
          <div class="border-t my-2" id="delete-separator" style="border-color: var(--border-color);"></div>
          <div class="menu-item" id="delete-item-btn">
              <span class="menu-label text-red-500">Delete Selected</span>
@@ -883,9 +972,9 @@
                 
                 <h3>Core Concepts</h3>
                 <ul>
-                    <li><strong>Panning:</strong> Middle-click and drag, or hold <strong>Space</strong> and left-click and drag to move around the canvas.</li>
-                    <li><strong>Zooming:</strong> Use the mouse wheel to zoom in and out.</li>
-                    <li><strong>Selecting:</strong> Click on an item to select it. Hold <strong>Shift</strong> and click to select multiple items. Click and drag on an empty area to create a selection box.</li>
+                    <li><strong>Panning & Zooming:</strong> On Desktop, use the mouse wheel to zoom and middle-click (or Space + left-click) to pan. On Touch devices, <strong>pinch with two fingers</strong> to zoom and <strong>drag with two fingers</strong> to pan.</li>
+                    <li><strong>Context Menu:</strong> Right-click on Desktop. <strong>Long press</strong> on a Touch device.</li>
+                    <li><strong>Selecting:</strong> Tap or Click on an item to select it. Hold <strong>Shift</strong> and click to select multiple items. Click and drag on an empty area to create a selection box.</li>
                      <li><strong>Deselect:</strong> Press <strong>Escape</strong> to clear your current selection.</li>
                 </ul>
 
@@ -893,10 +982,10 @@
                  <ul>
                     <li><strong>Select (V):</strong> The default tool for selecting, moving, and interacting with items.</li>
                     <li><strong>Add Image (I):</strong> Opens a file dialog to add images. You can also paste images directly or drag-and-drop them onto the canvas.</li>
-                    <li><strong>Add Text (T):</strong> Click and drag to create a text box. Double-click an existing text box to edit it.</li>
-                    <li><strong>Add Arrow (A):</strong> Click and drag to draw an arrow.</li>
-                    <li><strong>Add Box (B):</strong> Click and drag to create a colored rectangle.</li>
-                    <li><strong>Add Grid (Shift+G):</strong> Click and drag to create a grid. Adjust rows and columns from the selection toolbar.</li>
+                    <li><strong>Add Text (T):</strong> Tap and drag to create a text box. Double-tap an existing text box to edit it.</li>
+                    <li><strong>Add Arrow (A):</strong> Tap and drag to draw an arrow.</li>
+                    <li><strong>Add Box (B):</strong> Tap and drag to create a colored rectangle.</li>
+                    <li><strong>Add Grid (Alt+G):</strong> Tap and drag to create a grid. Adjust rows and columns from the selection toolbar.</li>
                     <li><strong>Draw (D):</strong> Freehand drawing tool.</li>
                     <li><strong>Eyedropper (E):</strong> Pick a color from the canvas to set as your current accent color.</li>
                 </ul>
@@ -934,7 +1023,7 @@
                 <h3>Credits</h3>
                 <p style="line-height: 1.8;">
                     Made by H. David Brum<br>
-                    <a href="mailto:davidbrum.5@gmail.com" target="_blank" style="color: var(--switch-bg-checked); text-decoration: none;">davidbrum.5@gmail.com</a><br>
+                    <a href="/cdn-cgi/l/email-protection#c6a2a7b0afa2a4b4b3abe8f386a1aba7afaae8a5a9ab" target="_blank" style="color: var(--switch-bg-checked); text-decoration: none;"><span class="__cf_email__" data-cfemail="6c080d1a05080e1e190142592c0b010d0500420f0301">[email&#160;protected]</span></a><br>
                     <a href="https://linktr.ee/davidbrum" target="_blank" style="color: var(--switch-bg-checked); text-decoration: none;">linktr.ee/davidbrum</a>
                 </p>
             </div>
@@ -944,7 +1033,7 @@
     <!-- Footer container -->
     <div id="footer-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 4999; display: flex; align-items: center; gap: 0.75rem;">
         <div id="version-info" style="font-size: 0.75rem; color: var(--text-color-light); opacity: 0.5; pointer-events: none;">
-            MOODinfinite Current stable version: v0.6.5
+            MOODinfinite Current stable version: v0.7.3
         </div>
         <!-- Patreon Button -->
         <a href="https://www.patreon.com/cw/bdvd" target="_blank" class="footer-btn" title="Support on Patreon">
@@ -962,7 +1051,7 @@
     <!-- Toast Notification Container -->
     <div id="toast-container"></div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Canvas and DOM Elements
         const canvas = document.getElementById('moodboard-canvas');
         const ctx = canvas.getContext('2d');
@@ -1031,6 +1120,8 @@
         const closeHelpBtn = document.getElementById('close-help-btn');
         const selectToolBtn = document.getElementById('select-tool-btn');
         const projectNameInput = document.getElementById('project-name-input');
+        const downloadImageBtn = document.getElementById('download-image-btn');
+        const downloadSeparator = document.getElementById('download-separator');
 
 
         // State Variables
@@ -1066,14 +1157,23 @@
         // --- CORE FUNCTIONS ---
 
         function setupEventListeners() {
+            // Mouse Listeners
             canvas.addEventListener('mousedown', onMouseDown);
             canvas.addEventListener('mouseup', onMouseUp);
             canvas.addEventListener('mousemove', onMouseMove);
             canvas.addEventListener('dblclick', onDoubleClick);
             canvas.addEventListener('wheel', (e) => { e.preventDefault(); adjustZoom(e, -e.deltaY * SCROLL_SENSITIVITY); });
+            canvas.addEventListener('contextmenu', onContextMenu);
+            
+            // Touch Listeners for mobile/tablet support
+            canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+            canvas.addEventListener('touchend', onTouchEnd, { passive: false });
+            canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+            canvas.addEventListener('touchcancel', onTouchEnd, { passive: false });
+
+            // Window and Document Listeners
             window.addEventListener('resize', resizeCanvas);
             window.addEventListener('keydown', handleKeyDown);
-            canvas.addEventListener('contextmenu', onContextMenu);
             document.addEventListener('click', (e) => { 
                 if (!contextMenu.contains(e.target)) contextMenu.style.display = 'none';
                 if (palettePanel.classList.contains('open') && !palettePanel.contains(e.target) && e.target !== paletteBtn && !paletteBtn.contains(e.target)) {
@@ -1197,6 +1297,8 @@
                     projectNameInput.value = currentProjectName;
                 }
             });
+
+            downloadImageBtn.addEventListener('click', downloadSourceImage);
         }
         
         function resizeCanvas() { 
@@ -1517,55 +1619,40 @@
             context.save();
             context.globalAlpha *= group.opacity ?? 1;
 
-            // The main 'draw' function already sets up drop shadow.
-            // We just need to apply the group's transform.
-            const centerX = group.x + group.width / 2;
-            const centerY = group.y + group.height / 2;
-            context.translate(centerX, centerY);
-            context.rotate(group.rotation);
-            context.translate(-centerX, -centerY);
+            // The main draw loop has already applied the group's main transform.
+            // We just need to draw the children relative to the group's origin.
+            context.translate(group.x, group.y);
 
-            // Now, call the standard draw functions for each child.
-            // These functions expect world coordinates, so we must provide them.
-            // The context is already rotated, so these world coordinates will be drawn in the right place.
             group.items.forEach(item => {
-                const tempWorldItem = { ...item };
-                // We calculate the item's world coordinates as if the group wasn't rotated.
-                // The context's rotation will handle placing it correctly.
-                tempWorldItem.x += group.x;
-                tempWorldItem.y += group.y;
+                context.save();
+                
+                const box = getItemBoundingBox(item);
+                const centerX = box.x + box.width / 2;
+                const centerY = box.y + box.height / 2;
+                
+                context.translate(centerX, centerY);
+                context.rotate(item.rotation || 0);
+                context.scale(item.scaleX || 1, item.scaleY || 1);
+                context.translate(-centerX, -centerY);
 
-                if (tempWorldItem.type === 'arrow') {
-                    tempWorldItem.startX += group.x;
-                    tempWorldItem.startY += group.y;
-                    tempWorldItem.endX += group.x;
-                    tempWorldItem.endY += group.y;
-                } else if (tempWorldItem.type === 'stroke') {
-                    tempWorldItem.points = item.points.map(p => ({ x: p.x + group.x, y: p.y + group.y }));
-                }
 
-                // Draw the child item. The individual draw functions will handle their own internal rotation.
-                if (tempWorldItem.type === 'image') {
-                    const itemCenterX = tempWorldItem.x + tempWorldItem.width / 2, itemCenterY = tempWorldItem.y + tempWorldItem.height / 2;
-                    context.save();
-                    context.translate(itemCenterX, itemCenterY);
-                    context.rotate(tempWorldItem.rotation); // Its own rotation
-                    context.translate(-itemCenterX, -itemCenterY);
-                    if (tempWorldItem.img.complete) {
-                        context.drawImage(tempWorldItem.img, tempWorldItem.x, tempWorldItem.y, tempWorldItem.width, tempWorldItem.height);
+                // Draw the child item using its own draw function.
+                if (item.type === 'image') {
+                    if (item.img && item.img.complete) {
+                        context.drawImage(item.img, item.x, item.y, item.width, item.height);
                     }
-                    context.restore();
-                } else if (tempWorldItem.type === 'arrow') {
-                    drawArrow(context, tempWorldItem);
-                } else if (tempWorldItem.type === 'text') {
-                    drawTextItem(context, tempWorldItem);
-                } else if (tempWorldItem.type === 'box') {
-                    drawBoxItem(context, tempWorldItem);
-                } else if (tempWorldItem.type === 'stroke') {
-                    drawStrokeItem(context, tempWorldItem);
-                } else if (tempWorldItem.type === 'grid') {
-                    drawGridItem(context, tempWorldItem);
+                } else if (item.type === 'arrow') {
+                    drawArrow(context, item);
+                } else if (item.type === 'text') {
+                    drawTextItem(context, item);
+                } else if (item.type === 'box') {
+                    drawBoxItem(context, item);
+                } else if (item.type === 'stroke') {
+                    drawStrokeItem(context, item);
+                } else if (item.type === 'grid') {
+                    drawGridItem(context, item);
                 }
+                context.restore();
             });
 
             context.restore();
@@ -1597,8 +1684,7 @@
 
             // New, Save, Open, and Undo shortcuts
             if (e.shiftKey && key === 'n') { e.preventDefault(); confirmNewBoard(); return; }
-            if (e.shiftKey && key === 'g') { e.preventDefault(); setCurrentTool('grid'); return; }
-            if (key === 'h') { e.preventDefault(); helpModalOverlay.style.display = 'flex'; return; }
+            if (e.altKey && key === 'g') { e.preventDefault(); setCurrentTool('grid'); return; }
             
             if (e.ctrlKey) {
                 if (e.shiftKey && key === 'z') { e.preventDefault(); redoLastAction(); return; }
@@ -1606,7 +1692,7 @@
                 if (key === 's') { e.preventDefault(); saveProject(); return; }
                 if (key === 'o') { e.preventDefault(); projectInput.click(); return; }
                 if (key === 'z') { e.preventDefault(); undoLastAction(); return; }
-                if (key === 'a') { e.preventDefault(); selectedItems = [...items]; updateSelectionToolbar(); updateLeftBarState(); return; }
+                if (key === 'a' && !e.shiftKey) { e.preventDefault(); selectedItems = [...items]; updateSelectionToolbar(); updateLeftBarState(); return; }
                 if (key === 'c') { e.preventDefault(); copyItems(); return; }
                 if (key === 'x') { e.preventDefault(); cutItems(); return; }
                 if (key === 'v') { e.preventDefault(); pasteItems(); return; }
@@ -1614,18 +1700,15 @@
                 if (key === 'g') { e.preventDefault(); groupSelectedItems(); return; }
             }
             if (e.shiftKey && key === 's') { e.preventDefault(); saveAsPng(); return; }
-            if (e.shiftKey && key === 'a') {
+            if (e.shiftKey && key.toLowerCase() === 'a') {
                 e.preventDefault();
-                if (selectedItems.length >= 2 && !isMovingItems) {
-                    autoAlignSelection();
-                }
+                setCurrentTool('arrow');
                 return;
             }
             
             // Tool shortcuts
-            if (key === 'v') { e.preventDefault(); setCurrentTool(null); return; }
-            if (key === 'g') { e.preventDefault(); showGrid = !showGrid; showGridToggle.checked = showGrid; return; }
-            if (key === 'a') { e.preventDefault(); setCurrentTool('arrow'); return; }
+            if (key === 'a' && !e.shiftKey && !e.ctrlKey && !e.altKey) { e.preventDefault(); setCurrentTool(null); return; }
+            if (key === 'g' && !e.altKey) { e.preventDefault(); showGrid = !showGrid; showGridToggle.checked = showGrid; return; }
             if (key === 't') { e.preventDefault(); setCurrentTool('text'); return; }
             if (key === 'i') { e.preventDefault(); imageInput.click(); return; }
             if (key === 'b') { e.preventDefault(); setCurrentTool('box'); return; }
@@ -1634,7 +1717,9 @@
 
             if (selectedItems.length === 0) return;
 
-            // Layering shortcuts
+            // Layering and Transform shortcuts
+            if (key === 'h') { e.preventDefault(); flipHorizontal(); return; }
+            if (key === 'v') { e.preventDefault(); flipVertical(); return; }
             if (key === 'home') { e.preventDefault(); bringSelectedToFront(); return; }
             if (key === 'end') { e.preventDefault(); sendSelectedToBack(); return; }
             if (key === 'pageup') { e.preventDefault(); moveSelectedUp(); return; }
@@ -1687,13 +1772,7 @@
                         const itemToTransform = selectedItems[0];
                         
                         originalItemState = JSON.parse(JSON.stringify(itemToTransform));
-                        if (itemToTransform.type === 'image') {
-                            originalItemState.img = itemToTransform.img;
-                        } else if (itemToTransform.type === 'group') {
-                            itemToTransform.items.forEach((child, i) => {
-                                if (child.type === 'image') originalItemState.items[i].img = child.img;
-                            });
-                        }
+                        reattachImages(itemToTransform, originalItemState);
                         
                         originalItemState.centerX = itemToTransform.x + itemToTransform.width / 2;
                         originalItemState.centerY = itemToTransform.y + itemToTransform.height / 2;
@@ -1719,15 +1798,15 @@
                     isDrawing = true;
                     let newItem;
                     if(currentTool === 'arrow') {
-                        newItem = { id: Date.now(), type: 'arrow', startX: worldPos.x, startY: worldPos.y, endX: worldPos.x, endY: worldPos.y, rotation: 0, isPinned: false, x: worldPos.x, y: worldPos.y, width: 0, height: 0, opacity: 1 };
+                        newItem = { id: Date.now(), type: 'arrow', startX: worldPos.x, startY: worldPos.y, endX: worldPos.x, endY: worldPos.y, rotation: 0, isPinned: false, x: worldPos.x, y: worldPos.y, width: 0, height: 0, opacity: 1, scaleX: 1, scaleY: 1 };
                     } else if (currentTool === 'text') {
-                        newItem = { id: Date.now(), type: 'text', text: 'Type...', x: worldPos.x, y: worldPos.y, width: 0, height: 0, fontSize: 32, rotation: 0, isPinned: false, opacity: 1, fontFamily: 'Inter', textAlign: 'center', fontWeight: 'bold', fontStyle: 'normal' };
+                        newItem = { id: Date.now(), type: 'text', text: 'Type...', x: worldPos.x, y: worldPos.y, width: 0, height: 0, fontSize: 32, rotation: 0, isPinned: false, opacity: 1, fontFamily: 'Inter', textAlign: 'center', fontWeight: 'bold', fontStyle: 'normal', scaleX: 1, scaleY: 1 };
                     } else if (currentTool === 'box') {
-                        newItem = { id: Date.now(), type: 'box', color: accentColor, x: worldPos.x, y: worldPos.y, width: 0, height: 0, rotation: 0, isPinned: false, style: 'fill', opacity: 1 };
+                        newItem = { id: Date.now(), type: 'box', color: accentColor, x: worldPos.x, y: worldPos.y, width: 0, height: 0, rotation: 0, isPinned: false, style: 'fill', opacity: 1, scaleX: 1, scaleY: 1 };
                     } else if (currentTool === 'grid') {
-                        newItem = { id: Date.now(), type: 'grid', color: accentColor, x: worldPos.x, y: worldPos.y, width: 0, height: 0, rotation: 0, isPinned: false, opacity: 1, rows: 3, cols: 3 };
+                        newItem = { id: Date.now(), type: 'grid', color: accentColor, x: worldPos.x, y: worldPos.y, width: 0, height: 0, rotation: 0, isPinned: false, opacity: 1, rows: 3, cols: 3, scaleX: 1, scaleY: 1 };
                     } else if (currentTool === 'draw') {
-                        newItem = { id: Date.now(), type: 'stroke', points: [{x: worldPos.x, y: worldPos.y}], color: accentColor, isPinned: false, x: worldPos.x, y: worldPos.y, width: 0, height: 0, opacity: 1 };
+                        newItem = { id: Date.now(), type: 'stroke', points: [{x: worldPos.x, y: worldPos.y}], color: accentColor, isPinned: false, x: worldPos.x, y: worldPos.y, width: 0, height: 0, opacity: 1, scaleX: 1, scaleY: 1 };
                     }
                     items.push(newItem);
                     selectedItems = [newItem];
@@ -1759,6 +1838,7 @@
                                     item.originalPoints = JSON.parse(JSON.stringify(item.points));
                                 } else if (item.type === 'group') {
                                     item.originalItems = JSON.parse(JSON.stringify(item.items));
+                                    reattachImages(item, {items: item.originalItems}); // Reattach to the clone
                                 }
                             });
                         } else {
@@ -1908,7 +1988,7 @@
                 }
             } 
             // Handle item movement
-            else if(isMovingItems && selectedItems.length > 0) {
+            else if (isMovingItems && selectedItems.length > 0) {
                  const dx = worldPos.x - moveStart.x;
                  const dy = worldPos.y - moveStart.y;
                  const currentSnap = e.shiftKey ? !snapToGrid : snapToGrid;
@@ -2006,6 +2086,10 @@
                 deleteItemBtn.style.display = 'none';
                 document.getElementById('delete-separator').style.display = 'none';
             }
+
+            const isSingleImageSelected = selectedItems.length === 1 && selectedItems[0].type === 'image';
+            downloadImageBtn.style.display = isSingleImageSelected ? 'flex' : 'none';
+            downloadSeparator.style.display = isSingleImageSelected ? 'block' : 'none';
 
             contextMenu.style.left = `${e.clientX}px`; 
             contextMenu.style.top = `${e.clientY}px`; 
@@ -2223,7 +2307,7 @@
                     img.onload = () => {
                         const aspectRatio = img.width / img.height; 
                         const newWidth = 250, newHeight = newWidth / aspectRatio;
-                        items.push({ id: Date.now() + index, type: 'image', img: img, x: worldPos.x - (newWidth / 2) + (index * 20), y: worldPos.y - (newHeight / 2) + (index * 20), width: newWidth, height: newHeight, rotation: 0, isPinned: false, opacity: 1 });
+                        items.push({ id: Date.now() + index, type: 'image', img: img, x: worldPos.x - (newWidth / 2) + (index * 20), y: worldPos.y - (newHeight / 2) + (index * 20), width: newWidth, height: newHeight, rotation: 0, isPinned: false, opacity: 1, scaleX: 1, scaleY: 1 });
                         bringSelectedToFront();
                     };
                     img.src = e.target.result;
@@ -2231,6 +2315,27 @@
                 reader.readAsDataURL(file);
             });
             setTimeout(saveStateForUndo, 500); // Wait for images to likely have loaded
+        }
+
+        function downloadSourceImage() {
+            if (selectedItems.length !== 1 || selectedItems[0].type !== 'image') return;
+
+            const item = selectedItems[0];
+            const link = document.createElement('a');
+            link.href = item.img.src;
+
+            try {
+                const url = new URL(item.img.src);
+                const pathnameParts = url.pathname.split('/');
+                link.download = pathnameParts[pathnameParts.length - 1] || 'source_image';
+            } catch (e) {
+                link.download = 'source_image.png';
+            }
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("Source image download started.");
         }
 
         // --- CLIPBOARD FUNCTIONS ---
@@ -2279,31 +2384,34 @@
                  const newItem = JSON.parse(JSON.stringify(clipboardItem));
                 newItem.id = Date.now() + Math.random();
                 newItem.isPinned = false; // Always paste as unpinned
+                
+                // Recursive function to restore images from imgSrc
+                function restoreImages(item) {
+                    if (item.type === 'image') {
+                        const img = new Image();
+                        img.src = item.imgSrc;
+                        delete item.imgSrc;
+                        item.img = img;
+                    } else if (item.type === 'group') {
+                        item.items.forEach(restoreImages); // Recurse through children
+                    }
+                }
+
+                restoreImages(newItem);
+
+                // Adjust coordinates for the top-level item
                 newItem.x += pasteOffset;
                 newItem.y += pasteOffset;
 
                 if (newItem.type === 'arrow') {
-                    newItem.startX += pasteOffset; newItem.startY += pasteOffset;
-                    newItem.endX += pasteOffset; newItem.endY += pasteOffset;
+                    newItem.startX += pasteOffset;
+                    newItem.startY += pasteOffset;
+                    newItem.endX += pasteOffset;
+                    newItem.endY += pasteOffset;
                 } else if (newItem.type === 'stroke') {
                     newItem.points.forEach(p => { p.x += pasteOffset; p.y += pasteOffset; });
-                } else if (newItem.type === 'image') {
-                    const img = new Image();
-                    img.src = newItem.imgSrc;
-                    delete newItem.imgSrc;
-                    newItem.img = img;
-                } else if (newItem.type === 'group') {
-                    newItem.items = newItem.items.map(child => {
-                        const newChild = { ...child };
-                        if (newChild.type === 'image') {
-                            const img = new Image();
-                            img.src = newChild.imgSrc;
-                            delete newChild.imgSrc;
-                            newChild.img = img;
-                        }
-                        return newChild;
-                    });
                 }
+                
                 return newItem;
             }
 
@@ -2329,6 +2437,10 @@
 
             itemsToDuplicate.forEach(item => {
                 const newItem = JSON.parse(JSON.stringify(item));
+                
+                // Recursively re-attach the original img objects
+                reattachImages(item, newItem);
+                
                 newItem.id = Date.now() + Math.random();
                 newItem.isPinned = false; // Always duplicate as unpinned
                 newItem.x += duplicateOffset;
@@ -2341,17 +2453,8 @@
                     newItem.endY += duplicateOffset;
                 } else if (newItem.type === 'stroke') {
                     newItem.points.forEach(p => { p.x += duplicateOffset; p.y += duplicateOffset; });
-                } else if (newItem.type === 'image') {
-                    const img = new Image();
-                    img.src = item.img.src;
-                    newItem.img = img;
-                } else if (newItem.type === 'group') {
-                    newItem.items = item.items.map(child => {
-                        const newChild = JSON.parse(JSON.stringify(child));
-                        if(child.type === 'image') newChild.img = child.img;
-                        return newChild;
-                    });
                 }
+                // Image objects are now handled recursively by reattachImages
 
                 items.push(newItem);
                 newItems.push(newItem);
@@ -2598,7 +2701,7 @@
         function updateSelectionToolbar() {
             const hasBox = selectedItems.some(item => item.type === 'box');
             const isStroke = selectedItems.length === 1 && selectedItems[0].type === 'stroke';
-            const canTransform = selectedItems.length === 1 && selectedItems[0].type !== 'arrow' && !isStroke;
+            const canTransform = selectedItems.length > 0;
             const canPin = selectedItems.length > 0;
             const canLayer = selectedItems.length > 0;
             const canGroup = selectedItems.length > 1;
@@ -2633,6 +2736,8 @@
                 }
 
                 toggleBoxStyleBtn.style.display = hasBox ? 'flex' : 'none';
+                flipHBtn.style.display = canTransform ? 'flex' : 'none';
+                flipVBtn.style.display = canTransform ? 'flex' : 'none';
                 scaleBtn.style.display = canTransform ? 'flex' : 'none';
                 rotateBtn.style.display = canTransform ? 'flex' : 'none';
                 pinBtn.style.display = canPin ? 'flex' : 'none';
@@ -2766,14 +2871,15 @@
 
             const recreateItems = (itemList) => {
                 return itemList.map(itemState => {
-                    if (itemState.type === 'image') {
+                    const newItem = { ...(itemState.scaleX !== undefined ? {} : { scaleX: 1, scaleY: 1 }), ...itemState };
+                    if (newItem.type === 'image') {
                         const img = new Image();
                         img.src = itemState.img;
-                        return { ...itemState, img: img };
-                    } else if (itemState.type === 'group') {
-                        return { ...itemState, items: recreateItems(itemState.items) };
+                        newItem.img = img;
+                    } else if (newItem.type === 'group') {
+                        newItem.items = recreateItems(newItem.items);
                     }
-                    return itemState;
+                    return newItem;
                 });
             };
             items = recreateItems(historyState);
@@ -2802,7 +2908,64 @@
 
             saveStateForUndo(); 
 
-            const box = getCollectiveBoundingBox(selectedItems);
+            // --- FLATTENING LOGIC ---
+            // 1. Create a new, flat list of all base elements.
+            const flatItemsToGroup = [];
+            selectedItems.forEach(item => {
+                if (item.type === 'group') {
+                    // Temporarily ungroup to get absolute positions of children
+                    const groupCenterX = item.x + item.width / 2;
+                    const groupCenterY = item.y + item.height / 2;
+                    const cosR = Math.cos(item.rotation);
+                    const sinR = Math.sin(item.rotation);
+
+                    item.items.forEach(child => {
+                        const worldItem = JSON.parse(JSON.stringify(child));
+                        reattachImages(child, worldItem); // Preserve the image object
+
+                        const childCenterX_rel = child.x + child.width / 2;
+                        const childCenterY_rel = child.y + child.height / 2;
+                        const childCenterX_from_group_center = childCenterX_rel - item.width / 2;
+                        const childCenterY_from_group_center = childCenterY_rel - item.height / 2;
+
+                        const rotatedX = childCenterX_from_group_center * cosR - childCenterY_from_group_center * sinR;
+                        const rotatedY = childCenterX_from_group_center * sinR + childCenterY_from_group_center * cosR;
+
+                        const newWorldCenterX = groupCenterX + rotatedX;
+                        const newWorldCenterY = groupCenterY + rotatedY;
+
+                        worldItem.x = newWorldCenterX - child.width / 2;
+                        worldItem.y = newWorldCenterY - child.height / 2;
+                        worldItem.rotation = (child.rotation || 0) + item.rotation;
+
+                        if (worldItem.type === 'arrow' || worldItem.type === 'stroke') {
+                             const transformPoint = (p) => {
+                                const childPointX_rel = child.x + p.x;
+                                const childPointY_rel = child.y + p.y;
+                                const px_from_center = childPointX_rel - item.width / 2;
+                                const py_from_center = childPointY_rel - item.height / 2;
+                                const rot_px = px_from_center * cosR - py_from_center * sinR;
+                                const rot_py = px_from_center * sinR + py_from_center * cosR;
+                                return { x: groupCenterX + rot_px, y: groupCenterY + rot_py };
+                            };
+                            if (worldItem.type === 'arrow') {
+                                const newStart = transformPoint({x: child.startX - child.x, y: child.startY - child.y});
+                                const newEnd = transformPoint({x: child.endX - child.x, y: child.endY - child.y});
+                                worldItem.startX = newStart.x; worldItem.startY = newStart.y;
+                                worldItem.endX = newEnd.x; worldItem.endY = newEnd.y;
+                            } else { // stroke
+                                worldItem.points = child.points.map(p => transformPoint({x: p.x - child.x, y: p.y - child.y}));
+                            }
+                        }
+                        flatItemsToGroup.push(worldItem);
+                    });
+                } else {
+                    flatItemsToGroup.push(item);
+                }
+            });
+
+            // 2. Get the collective bounding box of all flattened items.
+            const box = getCollectiveBoundingBox(flatItemsToGroup);
             
             const newGroup = {
                 id: Date.now(),
@@ -2812,11 +2975,15 @@
                 rotation: 0,
                 isPinned: false,
                 opacity: 1,
+                scaleX: 1,
+                scaleY: 1,
                 items: []
             };
 
-            selectedItems.forEach(item => {
+            // 3. Make all items relative to the new group's top-left corner.
+            flatItemsToGroup.forEach(item => {
                 const relativeItem = JSON.parse(JSON.stringify(item));
+                reattachImages(item, relativeItem);
                 
                 relativeItem.x -= newGroup.x;
                 relativeItem.y -= newGroup.y;
@@ -2829,16 +2996,15 @@
                         p.x -= newGroup.x; p.y -= newGroup.y;
                     });
                 }
-                if (item.type === 'image') {
-                    relativeItem.img = item.img;
-                }
 
                 newGroup.items.push(relativeItem);
             });
             
+            // 4. Remove all original selected items from the main canvas.
             const idsToGroup = new Set(selectedItems.map(item => item.id));
             items = items.filter(item => !idsToGroup.has(item.id));
 
+            // 5. Add the new, combined group.
             items.push(newGroup);
             selectedItems = [newGroup];
 
@@ -2865,11 +3031,9 @@
 
                 group.items.forEach(child => {
                     const newWorldItem = JSON.parse(JSON.stringify(child));
-                    newWorldItem.id = Date.now() + Math.random();
 
-                    if (child.type === 'image') {
-                        newWorldItem.img = child.img;
-                    }
+                    // Re-attach images recursively from the original child
+                    reattachImages(child, newWorldItem);
 
                     if (newWorldItem.type === 'arrow' || newWorldItem.type === 'stroke') {
                         const transformPoint = (p) => {
@@ -2962,7 +3126,118 @@
                 toast.remove();
             }, 3000); // 3000ms total lifetime
         }
+        
+        // --- TOUCH HANDLING & MOBILE SUPPORT ---
 
+        let lastTap = 0;
+        let longPressTimer = null;
+        let isPinching = false;
+        let initialPinchDistance = null;
+        let lastPinchCenter = null;
+        let initialCameraZoomOnPinch = 1;
+
+        function onTouchStart(e) {
+            e.preventDefault();
+            clearTimeout(longPressTimer);
+
+            if (e.touches.length === 1 && !isPinching) {
+                const now = new Date().getTime();
+                const timeSinceLastTap = now - lastTap;
+                
+                if (timeSinceLastTap < 300 && timeSinceLastTap > 0) { // Double tap
+                    onDoubleClick(normalizeTouchEvent(e));
+                    lastTap = 0;
+                    return;
+                }
+                lastTap = now;
+
+                longPressTimer = setTimeout(() => {
+                    onContextMenu({ preventDefault: () => {}, ...normalizeTouchEvent(e) });
+                    if (navigator.vibrate) navigator.vibrate(50);
+                }, 750);
+
+                onMouseDown(normalizeTouchEvent(e));
+            } else if (e.touches.length === 2) {
+                // Entering pinch mode, cancel any single-touch actions
+                isDrawing = false; isMovingItems = false; isTransforming = false; isTransformingArrow = false; isSelectingBox = false;
+
+                isPinching = true;
+                initialPinchDistance = getPinchDistance(e);
+                lastPinchCenter = getPinchCenter(e);
+                initialCameraZoomOnPinch = cameraZoom;
+            }
+        }
+
+        function onTouchMove(e) {
+            e.preventDefault();
+            clearTimeout(longPressTimer);
+
+            if (e.touches.length === 1 && !isPinching) {
+                onMouseMove(normalizeTouchEvent(e));
+            } else if (e.touches.length === 2 && isPinching) {
+                const currentCenter = getPinchCenter(e);
+                
+                // --- PAN ---
+                const deltaX = currentCenter.x - lastPinchCenter.x;
+                const deltaY = currentCenter.y - lastPinchCenter.y;
+                cameraOffset.x += deltaX / cameraZoom;
+                cameraOffset.y += deltaY / cameraZoom;
+
+                // --- ZOOM ---
+                const newPinchDistance = getPinchDistance(e);
+                const zoomFactor = newPinchDistance / initialPinchDistance;
+                const newZoom = initialCameraZoomOnPinch * zoomFactor;
+                
+                const worldPosBeforeZoom = screenToWorld(currentCenter);
+                cameraZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
+                const worldPosAfterZoom = screenToWorld(currentCenter);
+                
+                cameraOffset.x += worldPosAfterZoom.x - worldPosBeforeZoom.x;
+                cameraOffset.y += worldPosAfterZoom.y - worldPosBeforeZoom.y;
+
+                lastPinchCenter = currentCenter;
+            }
+        }
+
+        function onTouchEnd(e) {
+            e.preventDefault();
+            clearTimeout(longPressTimer);
+
+            if (e.touches.length < 2) {
+                isPinching = false;
+                initialPinchDistance = null;
+                lastPinchCenter = null;
+            }
+
+            // onMouseUp handles resetting isMovingItems etc.
+            if (e.touches.length === 0) {
+                 onMouseUp(normalizeTouchEvent(e));
+            }
+        }
+
+        function getPinchDistance(e) {
+            const t1 = e.touches[0];
+            const t2 = e.touches[1];
+            return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+        }
+
+        function getPinchCenter(e) {
+            const t1 = e.touches[0];
+            const t2 = e.touches[1];
+            return { x: (t1.clientX + t2.clientX) / 2, y: (t1.clientY + t2.clientY) / 2 };
+        }
+
+        function normalizeTouchEvent(e) {
+            let touch;
+            if (e.touches && e.touches.length > 0) {
+                touch = e.touches[0];
+            } else if (e.changedTouches && e.changedTouches.length > 0) {
+                touch = e.changedTouches[0];
+            } else {
+                 return { clientX: 0, clientY: 0, button: 0, target: e.target };
+            }
+            return { clientX: touch.clientX, clientY: touch.clientY, button: 0, target: e.target };
+        }
 
         // --- UTILITY FUNCTIONS ---
         
@@ -2970,6 +3245,21 @@
         function screenToWorld(p) { return { x: (p.x - canvas.width / 2) / cameraZoom - cameraOffset.x + canvas.width / 2, y: (p.y - canvas.height / 2) / cameraZoom - cameraOffset.y + canvas.height / 2 }; }
         function worldToScreen(p) { return { x: (p.x + cameraOffset.x - canvas.width / 2) * cameraZoom + canvas.width / 2, y: (p.y + cameraOffset.y - canvas.height / 2) * cameraZoom + canvas.height / 2 }; }
         
+        // Recursively re-attaches HTMLImageElement objects after a JSON clone
+        function reattachImages(sourceItem, targetItem) {
+            if (!sourceItem || !targetItem) return;
+
+            if (sourceItem.type === 'image' && sourceItem.img instanceof HTMLImageElement) {
+                targetItem.img = sourceItem.img;
+            } else if (sourceItem.type === 'group') {
+                if (sourceItem.items && targetItem.items) {
+                    sourceItem.items.forEach((childSource, index) => {
+                        reattachImages(childSource, targetItem.items[index]);
+                    });
+                }
+            }
+        }
+
         function getItemAtPosition(pos) {
              for (let i = items.length - 1; i >= 0; i--) {
                 const item = items[i];
@@ -3061,7 +3351,49 @@
 
         function getItemBoundingBox(item) {
              if (item.type === 'group') {
-                 // The bounding box for a group is its own rotated rectangle
+                if (!item.items || item.items.length === 0) {
+                    return { x: item.x, y: item.y, width: item.width, height: item.height };
+                }
+                // Calculate bounding box based on children's transformed positions
+                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+                
+                const groupCenterX = item.x + item.width / 2;
+                const groupCenterY = item.y + item.height / 2;
+                const cosR = Math.cos(item.rotation);
+                const sinR = Math.sin(item.rotation);
+
+                item.items.forEach(child => {
+                    const childBox = getItemBoundingBox(child);
+                    const childCorners = [
+                        {x: childBox.x, y: childBox.y},
+                        {x: childBox.x + childBox.width, y: childBox.y},
+                        {x: childBox.x + childBox.width, y: childBox.y + childBox.height},
+                        {x: childBox.x, y: childBox.y + childBox.height},
+                    ];
+
+                    childCorners.forEach(corner => {
+                        // The corner is relative to the child's own origin, which is relative to the group's origin
+                        const cornerX_rel_group = corner.x;
+                        const cornerY_rel_group = corner.y;
+
+                        // Position relative to group center
+                        const px_from_center = (item.x + cornerX_rel_group) - groupCenterX;
+                        const py_from_center = (item.y + cornerY_rel_group) - groupCenterY;
+
+                        // Rotate
+                        const rot_px = px_from_center * cosR - py_from_center * sinR;
+                        const rot_py = px_from_center * sinR + py_from_center * cosR;
+
+                        const finalX = groupCenterX + rot_px;
+                        const finalY = groupCenterY + rot_py;
+
+                        minX = Math.min(minX, finalX);
+                        minY = Math.min(minY, finalY);
+                        maxX = Math.max(maxX, finalX);
+                        maxY = Math.max(maxY, finalY);
+                    });
+                });
+                return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
              }
             if (item.type === 'stroke') {
                 let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
@@ -3136,8 +3468,6 @@
         saveStateForUndo(); // Save the initial empty state
         gameLoop();
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98d88feb4cb84c58',t:'MTc2MDI5MjcxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-"
-I have implemented the requested changes in the file index.html.
 
