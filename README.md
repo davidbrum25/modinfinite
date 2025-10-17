@@ -1,4 +1,4 @@
-# Moodinfinite v0.8.0
+# Moodinfinite v0.8.6
 
 <div align="center">
   <img src="https://github.com/davidbrum25/moodinfinite/blob/main/_branding/_png/moodinfinite__Logotipo_alpha.png?raw=true" alt="Moodinfinite Logo" width="400"/>
@@ -7,6 +7,19 @@
 <p align="center">
   <strong>A versatile, infinite digital canvas for your ideas. Create moodboards, brainstorm, organize thoughts, and now, craft the perfect AI prompts.</strong>
 </p>
+
+---
+
+## ✨ What's New in Version 0.8.6
+
+This update brings several new features and improvements to enhance your creative workflow.
+
+* **🎨 Enhanced Theming:** Enjoy a more robust color management system that allows for per-project color palettes.
+* **✒️ Google Fonts Integration:** Added a variety of new fonts from Google Fonts to bring your ideas to life.
+* **🖱️ Improved Tab Management:** Tabs are now scrollable, allowing you to work with a large number of projects seamlessly.
+* **⚪ New "Circle" Tool:** A new tool to draw circles on the canvas.
+* ** Improved Paste Functionality:** Prevents pasting the same content multiple times.
+* **⭐ GitHub Link:** Added a link to the project's GitHub repository for easy access to the source code and documentation.
 
 ---
 
@@ -58,6 +71,7 @@ Each Moodprompt file consists of "Prompt Cards," which feature:
     * **Add Text (T):** Create rich text boxes with custom fonts and alignment.
     * **Add Arrow (Shift+A):** Draw arrows to connect ideas.
     * **Add Box (B):** Create solid or outlined rectangles.
+    * **Add Circle (C):** Create solid or outlined circles.
     * **Add Grid (Alt+G):** Create structured grids.
     * **Draw (D):** A freehand drawing tool.
     * **Eyedropper (E):** Pick colors directly from the canvas.
