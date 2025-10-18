@@ -1,4 +1,4 @@
-# Moodinfinite v0.8.6
+# Moodinfinite v0.8.7
 
 <div align="center">
   <img src="https://github.com/davidbrum25/moodinfinite/blob/main/_branding/_png/moodinfinite__Logotipo_alpha.png?raw=true" alt="Moodinfinite Logo" width="400"/>
@@ -7,6 +7,18 @@
 <p align="center">
   <strong>A versatile, infinite digital canvas for your ideas. Create moodboards, brainstorm, organize thoughts, and now, craft the perfect AI prompts.</strong>
 </p>
+
+---
+
+## ✨ What's New in Version 0.8.7
+
+This update focuses on adding more tools to the app and improving the overall user experience.
+
+* **📏 New "Measure" Tool:** A new tool to measure distances on the canvas in pixels, cm, or inches.
+* **👆 Enhanced Touch Controls:** Pinch to zoom and two-finger pan have been improved for a smoother experience on touch devices.
+* **❓ In-App Help:** A comprehensive help modal has been added, explaining all the features and hotkeys.
+* **📋 Copy to Clipboard:** You can now copy the entire board to the clipboard as a PNG image.
+* **🎨 Color Palettes:** A new panel with a curated selection of color palettes to quickly theme your projects.
 
 ---
 
